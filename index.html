@@ -538,7 +538,7 @@ h2 {
       "xiaomi": ["Redmi Serisi", "Mi Serisi", "Poco Serisi"],
       "infinix": ["Smart Serisi", "Hot Serisi", "Note Serisi", "GT Serisi", "Zero Serisi"],
       "tecno mobile": ["Spark Serisi", "Pova Serisi", "Camon Serisi"],
-      "samsung": ["Ultra Serisi", "Flip Serisi", "Fold Serisi"],
+      "samsung": ["Ultra Serisi", "Flip Serisi", "Saat Serisi", "Fold Serisi"],
       "google": ["Pixel Serisi"],
       "iphone": ["Değişim Serisi", "Saat Serisi"]
     };
@@ -559,7 +559,7 @@ h2 {
       if (m.includes("redmi") || m.includes("poco") || m.includes("mi ") || m.includes("xiaomi")) return "Xiaomi";
       if (m.includes("infinix")) return "Infinix";
       if (m.includes("spark") || m.includes("pova") || m.includes("camon") || m.includes("tecno")) return "Tecno Mobile";
-      if ((m.includes("samsung") || m.includes("z fold") || m.includes("z flip")) || (m.includes("ultra") && !m.includes("watch"))) return "Samsung";
+      if ((m.includes("samsung") || m.includes("z fold") || m.includes("z flip")) || (m.includes("samsung s") && !m.includes("watch"))) return "Samsung";
       if (m.includes("pixel") || m.includes("google")) return "Google";
       if (m.includes("redmagic")) return "RedMagic";
       if (m.includes("nubia")) return "Nubia";
@@ -570,27 +570,35 @@ h2 {
     }
 
     function getSeriesFromModel(model) {
-      const m = normalizeTR(model);
-      const original = model.toLowerCase();
-      if (m.includes("redmi")) return "Redmi Serisi";
-      if (m.includes("poco")) return "Poco Serisi";
-      if (m.includes("mi ")) return "Mi Serisi";
-      if (m.includes("smart")) return "Smart Serisi";
-      if (m.includes("hot")) return "Hot Serisi";
-      if (m.includes("note")) return "Note Serisi";
-      if (m.includes("gt")) return "GT Serisi";
-      if (m.includes("zero")) return "Zero Serisi";
-      if (m.includes("spark")) return "Spark Serisi";
-      if (m.includes("pova")) return "Pova Serisi";
-      if (m.includes("camon")) return "Camon Serisi";
-      if ((m.includes("s23") || m.includes("s24") || m.includes("s25")) && !m.includes("watch")) return "Ultra Serisi";
-      if (m.includes("z flip")) return "Flip Serisi";
-      if (m.includes("z fold")) return "Fold Serisi";
-      if (m.includes("pixel")) return "Pixel Serisi";
-      if ((original.includes("iphone") || m.includes("iphone")) && m.includes("watch")) return "Saat Serisi";
-      if (m.includes("(d)")) return "Değişim Serisi";
-      return "";
-    }
+  const m = normalizeTR(model);
+  const original = model.toLowerCase();
+
+  if (m.includes("redmi")) return "Redmi Serisi";
+  if (m.includes("poco")) return "Poco Serisi";
+  if (m.includes("mi ")) return "Mi Serisi";
+  if (m.includes("smart")) return "Smart Serisi";
+  if (m.includes("hot")) return "Hot Serisi";
+  if (m.includes("note")) return "Note Serisi";
+  if (m.includes("gt")) return "GT Serisi";
+  if (m.includes("zero")) return "Zero Serisi";
+  if (m.includes("spark")) return "Spark Serisi";
+  if (m.includes("pova")) return "Pova Serisi";
+  if (m.includes("camon")) return "Camon Serisi";
+
+  // 👇 Samsung Watch önce kontrol ediliyor
+  if (m.includes("samsung watch")) return "Saat Serisi";
+
+  // 👇 Ultra serisi için watch geçmeyen s23-s25
+  if ((m.includes("s23") || m.includes("s24") || m.includes("s25")) && !m.includes("watch")) return "Ultra Serisi";
+
+  if (m.includes("z flip")) return "Flip Serisi";
+  if (m.includes("z fold")) return "Fold Serisi";
+  if (m.includes("pixel")) return "Pixel Serisi";
+  if ((original.includes("iphone") || m.includes("iphone")) && m.includes("iphone watch")) return "Saat Serisi";
+  if (m.includes("(d)")) return "Değişim Serisi";
+  return "";
+}
+    
 
     function applyFilters() {
       const searchInput = normalizeTR(document.getElementById('manualSearch').value);
