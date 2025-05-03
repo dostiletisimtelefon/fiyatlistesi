@@ -505,7 +505,7 @@ h2 {
       .then(data => {
         const kurSatiri = data.find(row => row["DOLARKURU"] && row["DOLARSAAT"]);
         if (kurSatiri) {
-          document.getElementById("dolarKuru").innerText = `₺${kurSatiri["DOLARKURU"]}`;
+          document.getElementById("dolarKuru").innerText = `${kurSatiri["DOLARKURU"]}`;
           document.getElementById("kurSaati").innerText = `Kur tarihi: ${kurSatiri["DOLARSAAT"]}`;
         }
       })
