@@ -476,7 +476,7 @@ h2 {
 <div class="currency-source">Haremaltın.com Dolar Kuru</div>
 <div class="currency-divider"></div>
 <div class="currency-date" id="kurSaati">Kur tarihi: yükleniyor...</div>
-<div class="currency-value">Güncel Dolar Kuru: <span id="dolarKuru">yükleniyor...</span></div>
+<div class="currency-value">Güncel Dolar Kuru: <span id="dolarKuru">₺ yükleniyor...</span></div>
 </div>
 <div class="whatsapp-buttons">
 <a href="https://wa.me/905356419868" target="_blank">
@@ -505,7 +505,7 @@ h2 {
       .then(data => {
         const kurSatiri = data.find(row => row["DOLARKURU"] && row["DOLARSAAT"]);
         if (kurSatiri) {
-          document.getElementById("dolarKuru").innerText = `${kurSatiri["DOLARKURU"]}`;
+          document.getElementById("dolarKuru").innerText = `₺${kurSatiri["DOLARKURU"]}`;
           document.getElementById("kurSaati").innerText = `Kur tarihi: ${kurSatiri["DOLARSAAT"]}`;
         }
       })
