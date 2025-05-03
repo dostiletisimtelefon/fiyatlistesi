@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>DOST İLETİŞİM FİYAT LİSTESİ</title><style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .top-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .top-container img {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .group-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 10px;
+      justify-content: center;
+    }
+    .group-buttons a {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+      min-width: 150px;
+    }
+    .group-buttons a img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .currency-box {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 10px 20px;
+      background-color: #fff;
+      display: inline-block;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .currency-source {
+      font-size: 13px;
+      font-weight: bold;
+      color: #666;
+    }
+    .currency-divider {
+      border-bottom: 1px solid #ccc;
+      margin: 6px 0;
+    }
+    .currency-date {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .currency-value {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .whatsapp-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .whatsapp-buttons a {
+      padding: 8px 12px;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .whatsapp-buttons a img {
+      width: 18px;
+      height: 18px;
+    }
+    .whatsapp-buttons a .wp-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .note-button {
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #dc3545;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    @media (max-width: 480px) {
+      .group-buttons a {
+        min-width: 100%;
+      }
+    }
+  
+@media (max-width: 600px) {
+  .group-buttons {
+    grid-template-columns: 1fr !important;
+  }
+  .group-buttons a {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .group-buttons {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .group-buttons a {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .group-buttons {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+  .group-buttons a {
+    width: 100% !important;
+    text-align: center;
+    padding: 10px !important;
+    box-sizing: border-box;
+  }
+}
+
+/* Sayfa boşluklarını sıkılaştır */
+.top-container {
+  margin-bottom: 10px !important;
+}
+.note-button {
+  margin-top: 6px !important;
+  margin-bottom: 10px !important;
+}
+h2 {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.logo-image {
+  max-height: 60px;
+  width: auto;
+}
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+@media (max-width: 600px) {
+  .logo-title-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+    .wp-icon {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .whatsapp-options {
+      justify-content: center;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    .whatsapp-options button {
+      background-color: #25D366;
+      color: white;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: bold;
+    }
+    .whatsapp-options button img {
+      width: 16px;
+      height: 16px;
+    }
+    .details-btn {
+      background-color: #ffc107;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .details-btn:hover {
+      background-color: #e0a800;
+    }
+    
+    /* Parmak dostu buton boyutu */
+    button,
+    .group-buttons a {
+      padding: 12px 14px;
+      font-size: 15px;
+    }
+
+    /* Ürün kutusu dokunma efekti */
+    .product {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product:active {
+      transform: scale(0.98);
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    /* WhatsApp butonlarını daha büyük ve bariz yap */
+    .whatsapp-options button {
+      font-size: 15px;
+      padding: 10px 14px;
+      gap: 10px;
+    }
+
+    /* Mobilde daha kompakt görünüm */
+    @media (max-width: 480px) {
+      .product h2 {
+        font-size: 18px;
+      }
+      .product p {
+        font-size: 13px;
+        margin: 3px 0;
+      }
+      .filter-bar {
+        padding: 0 10px;
+      }
+    }
+    
+/* Yukarı çık butonu */
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+#scrollTopBtn:hover {
+  background-color: #0056b3;
+}
+
+#scrollTopBtn {
+  background-color: #007bff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#scrollTopBtn img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+</style><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Telefon Fiyat Listesi</title><style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: 0 auto 30px auto;
+    }
+    .filter-bar input,
+    .filter-bar select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .product {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-content {
+      padding-left: 10px;
+    }
+    .product h3 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      color: #555;
+    }
+    .product h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #222;
+    }
+    .product p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .product-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 10px;
+    }
+    .product-actions button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .order-btn {
+      background-color: #28a745;
+      color: white;
+    }
+    .whatsapp-options {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+	   justify-content: center; /* BU SATIRI EKLE */
+    }
+    .whatsapp-options button {
+      background-color: #25D366;
+      color: white;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+	.excel-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #217346;
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.excel-link-button img {
+  width: 20px;
+  height: 20px;
+}
+.details-btn {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.details-btn:hover {
+  background-color: #e0a800;
+}
+
+.group-buttons a {
+  padding: 10px;
+  background: linear-gradient(to right, #d32f2f, #555);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  min-width: 150px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
+}
+.group-buttons a:hover {
+  background: linear-gradient(to right, #b71c1c, #333);
+}
+
+
+
+  </style>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/254/254638.png" type="image/png">
+<meta content="Dost İletişim - Uygun fiyatlı telefon modelleri, WhatsApp sipariş imkanı ve güncel dolar kuru ile hızlı sipariş." name="description"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#007bff" name="theme-color"/>
+</head><body><div class="top-container">
+<div class="logo-title-container">
+<img alt="Logo" class="logo-image" src="https://i.hizliresim.com/56pyamb.png"/>
+<div class="logo-text">DOST İLETİŞİM</div>
+</div>
+<div class="group-buttons">
+<a href="https://t.me/dostiletisim">
+<img alt="Telegram" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"/>
+        Telegram Grubumuz
+      </a>
+<a href="https://www.facebook.com/groups/1464553127213003">
+<img alt="Facebook" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"/>
+        Facebook Grubumuz
+      </a>
+<a href="https://chat.whatsapp.com/FNZPJ3t5af8JWPBiNowM0z">
+<img alt="WhatsApp" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"/>
+        WhatsApp Grubumuz
+      </a>
+<a href="https://www.facebook.com/share/p/1A1yxwa1jd/">
+<img alt="Referans" src="https://cdn-icons-png.flaticon.com/512/535/535234.png"/>
+        Referanslarımız
+      </a>
+</div>
+<div class="currency-box">
+<div class="currency-source">Haremaltın.com Dolar Kuru</div>
+<div class="currency-divider"></div>
+<div class="currency-date" id="kurSaati">Kur tarihi: yükleniyor...</div>
+<div class="currency-value">Güncel Dolar Kuru: <span id="dolarKuru">₺ yükleniyor...</span></div>
+</div>
+<div class="whatsapp-buttons">
+<a href="https://wa.me/905356419868" target="_blank">
+<img alt="WP" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"/>
+<div class="wp-text">
+<span>Miskin ADAK</span>
+<span>0535 641 9868</span>
+</div>
+</a>
+<a href="https://wa.me/905369973191" target="_blank">
+<img alt="WP" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"/>
+<div class="wp-text">
+<span>Murat UĞUR</span>
+<span>0536 997 3191</span>
+</div>
+</a>
+</div>
+<a class="excel-link-button" href="https://docs.google.com/spreadsheets/d/1dW22vejGhG_SlydJ5vAhrraDpI6DdKITniAtBaGL3Xo/edit?usp=sharing" target="_blank">
+<img alt="Excel" src="https://cdn-icons-png.flaticon.com/512/732/732220.png"/>
+  Fiyatlara Excel Üzerinden Ulaşmak İçin Tıklayın
+</a>
+<a class="note-button" href="#"><span onclick="openNotePopup()" style="cursor:pointer;">SİPARİŞ VERMEDEN ÖNCE MUTLAKA OKUYUN</span></a>
+</div><script>
+    fetch("https://opensheet.elk.sh/1dW22vejGhG_SlydJ5vAhrraDpI6DdKITniAtBaGL3Xo/veriver")
+      .then(res => res.json())
+      .then(data => {
+        const kurSatiri = data.find(row => row["DOLARKURU"] && row["DOLARSAAT"]);
+        if (kurSatiri) {
+          document.getElementById("dolarKuru").innerText = `${kurSatiri["DOLARKURU"]}`;
+          document.getElementById("kurSaati").innerText = `Kur tarihi: ${kurSatiri["DOLARSAAT"]}`;
+        }
+      })
+      .catch(err => {
+        document.getElementById("dolarKuru").innerText = "Veri alınamadı";
+        document.getElementById("kurSaati").innerText = "";
+        console.error("Kur bilgisi alınamadı:", err);
+      });
+  </script><h2>Telefon Fiyat Listesi</h2><div class="filter-bar">
+<input id="manualSearch" oninput="applyFilters()" placeholder="Model ara..." type="text"/>
+<select id="brandInput" onchange="populateSeries(); applyFilters()">
+<option value="">Tüm Markalar</option>
+</select>
+<select id="seriesInput" onchange="applyFilters()">
+<option value="">Tüm Seriler</option>
+</select>
+<input id="maxPrice" oninput="applyFilters()" placeholder="Max ₺" type="number"/>
+</div><div class="product-list" id="productList"></div><script>
+    const sheetUrl = "https://opensheet.elk.sh/1dW22vejGhG_SlydJ5vAhrraDpI6DdKITniAtBaGL3Xo/veriver2";
+    let allProducts = [];
+
+    const brandSeriesMap = {
+      "xiaomi": ["Redmi Serisi", "Mi Serisi", "Poco Serisi"],
+      "infinix": ["Smart Serisi", "Hot Serisi", "Note Serisi", "GT Serisi", "Zero Serisi"],
+      "tecno mobile": ["Spark Serisi", "Pova Serisi", "Camon Serisi"],
+      "samsung": ["Ultra Serisi", "Flip Serisi", "Fold Serisi"],
+      "philips": ["Kişisel Bakım"],
+      "dyson": ["Kişisel Bakım", "Temizlik"]
+	  
+    };
+
+    function normalizeTR(str) {
+      return str.toLocaleLowerCase("tr")
+        .replace(/ç/g, 'c')
+        .replace(/ş/g, 's')
+        .replace(/ğ/g, 'g')
+        .replace(/ü/g, 'u')
+        .replace(/ö/g, 'o')
+        .replace(/ı/g, 'i');
+    }
+
+    function getBrandFromModel(model) {
+      const m = normalizeTR(model);
+      if (m.includes("degisim")) return "iPhone Değişim";
+      if (m.includes("redmi") || m.includes("poco") || m.includes("mi ") || m.includes("xiaomi")) return "XIOAMI";
+      if (m.includes("infinix")) return "Infinix";
+      if (m.includes("spark") || m.includes("pova") || m.includes("camon") || m.includes("tecno")) return "Tecno Mobile";
+      if ((m.includes("samsung") || m.includes("z fold") || m.includes("z flip")) || (m.includes("ultra") && !m.includes("watch"))) return "Samsung";
+      if (m.includes("pixel") || m.includes("google")) return "Google";
+      if (m.includes("redmagic")) return "RedMagic";
+      if (m.includes("nubia")) return "Nubia";
+      if (m.includes("oneplus")) return "OnePlus";
+      if (m.includes("iphone")) return "iPhone";
+      if (m.includes("tablet")) return "Tablet";
+	  if (m.includes("dyson")) return "DYSON";
+	  if (m.includes("bosch")) return "BOSCH";
+	  if (m.includes("philips")) return "PHILIPS";
+	  	  if (m.includes("vazol")) return "VAZOL";
+
+
+	  
+	  
+
+      return "Diğer";
+    }
+
+    function getSeriesFromModel(model) {
+      const m = normalizeTR(model);
+      const original = model.toLowerCase();
+      if (m.includes("redmi")) return "Redmi Serisi";
+      if (m.includes("poco")) return "Poco Serisi";
+      if (m.includes("mi ")) return "Mi Serisi";
+      if (m.includes("smart")) return "Smart Serisi";
+      if (m.includes("hot")) return "Hot Serisi";
+      if (m.includes("note")) return "Note Serisi";
+      if (m.includes("gt")) return "GT Serisi";
+      if (m.includes("zero")) return "Zero Serisi";
+      if (m.includes("spark")) return "Spark Serisi";
+      if (m.includes("pova")) return "Pova Serisi";
+      if (m.includes("camon")) return "Camon Serisi";
+      if ((m.includes("s23") || m.includes("s24") || m.includes("s25")) && !m.includes("watch")) return "Ultra Serisi";
+      if (m.includes("z flip")) return "Flip Serisi";
+      if (m.includes("z fold")) return "Fold Serisi";
+      if (m.includes("pixel")) return "Pixel Serisi";
+      if ((original.includes("iphone") || m.includes("iphone")) && m.includes("watch")) return "Saat Serisi";
+      if (m.includes("(d)")) return "Değişim Serisi";
+	  if (m.includes("sac masasi") || m.includes("sac duzlestirici") || m.includes("lumea lazer")) return "Kişisel Bakım";
+	  if (m.includes("vaccum") || m.includes("absolute")) return "Temizlik";
+
+      return "";
+    }
+
+    function applyFilters() {
+      const searchInput = normalizeTR(document.getElementById('manualSearch').value);      
+      const brand = document.getElementById('brandInput').value;
+      const series = document.getElementById('seriesInput').value;
+      const maxPriceInput = document.getElementById('maxPrice').value;
+      const maxPrice = maxPriceInput ? parseFloat(maxPriceInput.replaceAll('.', '').replace(',', '.')) : Infinity;
+
+      const filtered = allProducts.filter(p => {
+        const pModel = normalizeTR(p.model);
+        const pBrand = normalizeTR(p.marka);
+        const pRam = p.ram;
+        const pSeries = p.seri;
+        const pPriceRaw = (p.fiyat || "").replaceAll('.', '').replace(',', '.');
+        const pPrice = parseFloat(pPriceRaw);
+		const passesPriceFilter = isNaN(pPrice) ? (!maxPriceInput || maxPrice === Infinity) : pPrice <= maxPrice;
+
+        return (!searchInput || pModel.includes(searchInput)) &&
+               (!brand || pBrand === brand) &&
+               (!series || pSeries === series) &&               
+               passesPriceFilter;
+      });
+
+      renderProducts(filtered);
+    }
+
+    function renderProducts(products) {
+      const container = document.getElementById('productList');
+      container.innerHTML = "";
+      products.forEach(p => {
+        const priceRaw = (p.fiyat || "").replaceAll('.', '').replace(',', '.');
+        const priceNum = parseFloat(priceRaw);
+        const showPrice = isNaN(priceNum) ? "ŞİMDİLİK YOK" : `${p.fiyat} ₺`;
+
+        const div = document.createElement('div');
+        div.className = "product";
+        div.dataset.model = normalizeTR(p.model);
+        div.dataset.ram = p.ram;
+        div.dataset.price = isNaN(priceNum) ? "9999999" : priceNum;
+        div.dataset.marka = normalizeTR(p.marka);
+        div.dataset.seri = p.seri;
+
+        div.innerHTML = `
+          <div class="product-content">
+            <h3>${p.marka} ${p.seri ? '(' + p.seri + ')' : ''}</h3>
+            <h2>${p.model}</h2>
+            <p>TL Fiyat: ${showPrice}</p>
+            <p>Dolar: ${p.dolar} $</p>
+          </div>
+          <div class="product-actions">
+			<button class="details-btn" onclick="window.open('${p.link || '#'}', '_blank')">Detaylı Özellikler</button>
+            <button class="order-btn" onclick="showWhatsAppOptions(this, '${p.model}', '${p.ram}', '${showPrice}')">Sipariş Ver</button>
+            <div class="whatsapp-options" style="display:none">
+  <button onclick="sendWhatsApp('905356419868', '${p.model}', '${p.ram}', '${showPrice}')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WP" style="width:16px; height:16px; vertical-align:middle; margin-right:6px;" />
+    Miskin ADAK
+  </button>
+  <button onclick="sendWhatsApp('905369973191', '${p.model}', '${p.ram}', '${showPrice}')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WP" style="width:16px; height:16px; vertical-align:middle; margin-right:6px;" />
+    Murat UĞUR
+  </button>
+</div>
+          </div>`;
+        container.appendChild(div);
+      });
+    }
+
+    function populateSeries() {
+      const brandValue = normalizeTR(document.getElementById('brandInput').value);
+      const seriesInput = document.getElementById('seriesInput');
+      seriesInput.innerHTML = '<option value="">Tüm Seriler</option>';
+      const seriesList = brandSeriesMap[brandValue];
+      if (seriesList) {
+        seriesList.forEach(ser => {
+          const opt = document.createElement('option');
+          opt.value = ser;
+          opt.textContent = ser;
+          seriesInput.appendChild(opt);
+        });
+      }
+    }
+
+    function populateFilters(products) {      
+      const brandSet = new Set();
+      products.forEach(p => {
+        
+        if (p.marka) brandSet.add(p.marka);
+      });
+      
+      
+      
+      
+      
+      
+      
+      const brandSelect = document.getElementById('brandInput');
+      brandSet.forEach(brand => {
+        const opt = document.createElement('option');
+        opt.value = normalizeTR(brand);
+        opt.textContent = brand;
+        brandSelect.appendChild(opt);
+      });
+    }
+
+    function showWhatsAppOptions(button, model, ram, price) {
+      const container = button.parentElement.querySelector('.whatsapp-options');
+      container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendWhatsApp(number, model, ram, price) {
+  const message =
+    `Merhaba\n` +
+    `Sipariş Vermek İstiyorum\n` +
+    `Model: ${model}\n` +
+    `RAM: ${ram}\n` +
+    `Fiyat: ${price}`;
+  const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+}
+
+    fetch(sheetUrl)
+  .then(res => res.json())
+  .then(data => {
+    allProducts = data.map(row => {
+      const model = row["MODEL"] || "";
+      return {
+        marka: getBrandFromModel(model),
+        seri: getSeriesFromModel(model),
+        model: model,
+        link: row["DETAY"] || "",  // <<< BURADA
+        ram: row["RAM VE HAFIZA"] || "",
+        kayit: row["KAYIT DURUMU"] || "",
+        dolar: row["DOLARFIYAT"] || "",
+        fiyat: row["TLFIYAT"] || ""
+      };
+    });
+        populateFilters(allProducts);
+        renderProducts(allProducts);
+      });
+  </script><button id="scrollTopBtn" onclick="scrollToTop()"><img alt="↑" src="https://cdn-icons-png.flaticon.com/512/130/130906.png"/></button><script>
+// Yukarı çık butonu göster/gizle
+window.onscroll = function() {
+  document.getElementById("scrollTopBtn").style.display =
+    document.body.scrollTop > 200 || document.documentElement.scrollTop > 200 ? "block" : "none";
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<div id="orderPopup" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center;">
+<div style="background: white; padding: 20px; border-radius: 10px; max-width: 320px; width: 90%; text-align: center;">
+<h3>Sipariş Detayı</h3>
+<p id="popupText"></p>
+<button id="popupConfirm" style="background-color: #25D366; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 10px; font-weight: bold;">📦 Siparişe Devam Et</button><br/>
+<button onclick="closePopup()" style="margin-top: 10px; background-color: #ccc; padding: 8px 16px; border: none; border-radius: 5px;">İptal</button>
+</div>
+</div>
+<script>
+let popupNumber = "", popupMessage = "";
+
+function sendWhatsApp(number, model, ram, price) {
+  popupNumber = number;
+  popupMessage =
+  `Merhaba\n` +
+  `Sipariş Vermek İstiyorum\n` +
+  `Model: ${model}\n` +
+  `RAM: ${ram}\n` +
+  `Fiyat: ${price}`;
+  const popup = document.getElementById('orderPopup');
+  if (popup) {
+    document.getElementById('popupText').innerText = popupMessage;
+    popup.style.display = 'flex';
+  }
+}
+
+
+function closePopup() {
+  const popup = document.getElementById('orderPopup');
+  if (popup) {
+    popup.style.display = 'none';
+  }
+}
+
+window.onload = function() {
+  const confirmBtn = document.getElementById('popupConfirm');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      const url = `https://wa.me/${popupNumber}?text=${encodeURIComponent(popupMessage)}`;
+      window.open(url, '_blank');
+      closePopup();
+    });
+  }
+};
+</script>
+<!-- Sipariş Notları Popup -->
+<div id="popupNote" style="display:none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);">
+  <div style="background: white; max-width: 500px; margin: 100px auto; padding: 20px; border-radius: 8px; position: relative; font-size: 14px; line-height: 1.5; text-align:left;">
+    <button onclick="closeNotePopup()" style="position: absolute; top: 10px; right: 12px; background: #dc3545; color: white; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer;">Kapat</button>
+    <strong>•</strong> Cihazların hepsi yurt dışı olup kayıtsızdır.<br/>
+    <strong>•</strong> İstek üzerine kayıtlı yazan modeller kayıtlı gönderilir.<br/>
+    <strong>•</strong> Dirençle kayıt olan cihazlara kayıt ücreti fiyata eklenir.<br/>
+    <strong>•</strong> Kendi IMEI’nizi verebilirsiniz ancak garantisi yoktur.<br/>
+    <strong>•</strong> IMEI klon/kopya durumunda uygun fiyatla uzaktan destek verilir.<br/>
+    <strong>•</strong> Ürünler orijinal kutulu ve aksesuarları ile gönderilir.<br/>
+    <strong>•</strong> Orijinal şarj olmayan cihazlara Xiaomi şarjı eklenir.<br/>
+    <strong>•</strong> EFT sonrası aynı gün kargoya verilir.<br/>
+    <strong>•</strong> Kargo tesliminde video çekilerek açılması gerekmektedir.<br/>
+    <strong>•</strong> Fabrikasyon hata, yazılımsal/donanımsal arıza durumunda değişim yapılır.<br/>
+    <strong>•</strong> Kargo riski (çalınma, kaybolma, el konulması) alıcıya aittir.
+  </div>
+</div>
+
+
+<script>
+  function openNotePopup() {
+    document.getElementById('popupNote').style.display = 'block';
+  }
+  function closeNotePopup() {
+    document.getElementById('popupNote').style.display = 'none';
+  }
+</script>
+
+</body></html>
