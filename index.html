@@ -1088,9 +1088,12 @@ window.onload = function() {
 };
 </script>
 <!-- SSS / Sipariş Notları Popup -->
-<div id="popupNote" style="display:none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); -webkit-overflow-scrolling: touch;">
-<div style="background: white; max-width: 600px; height: 90vh; overflow-y: auto; box-sizing: border-box; margin: 60px auto; padding: 25px 20px; border-radius: 10px; position: relative; font-size: 14px; line-height: 1.6; text-align:left; color:#333;">
+<div id="popupNote" style="display:none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); overflow-y: auto;">
+  <div style="background: white; max-width: 600px; height: 90vh; overflow-y: auto; box-sizing: border-box; margin: 60px auto; padding: 25px 20px 100px; border-radius: 10px; position: relative; font-size: 14px; line-height: 1.6; text-align:left; color:#333;">
+
+    <!-- Sağ üst kapat -->
     <button onclick="closeNotePopup()" style="position: absolute; top: 10px; right: 12px; background: #dc3545; color: white; border: none; border-radius: 4px; padding: 5px 12px; cursor: pointer;">Kapat</button>
+
     <h2 style="margin-top:0; color:#007bff;">❓ Sıkça Sorulan Sorular (SSS)</h2>
 
     <p><strong>📌 Satılan telefonlar kayıtlı mı?</strong><br>Hayır, tüm cihazlar yurt dışı ve kayıtsızdır. Ancak "Kayıtlı" olarak belirtilen modeller kayıtlı şekilde gönderilir.</p>
@@ -1120,23 +1123,26 @@ window.onload = function() {
     <p><strong>• Direnç Kaydı:</strong> Anakart üzerindeki direnç çipine işlem uygulanarak yapılan fiziksel kayıt yöntemidir.</p>
 
     <p><strong>• CPID Kaydı:</strong> Xiaomi cihazlarda uygulanan tek SIM destekli yazılımsal kayıt yöntemidir. Uzaktan yapılır, cihaz sıfırlanır. Sadece 1 adet şahsi IMEI girilebilir.</p>
-	      <hr style="margin: 20px 0;">
+
+    <!-- ALTTA SOLDA KAPAT BUTONU -->
+    <div style="margin-top: 30px;">
+      <button onclick="closeNotePopup()" style="background: #dc3545; color: white; border: none; border-radius: 5px; padding: 8px 16px; cursor: pointer;">Kapat</button>
+    </div>
 
   </div>
 </div>
-	<div style="height: 100px; visibility: hidden;"></div>
 
 <!-- Aç/Kapat Fonksiyonu -->
 <script>
   function openNotePopup() {
     document.getElementById('popupNote').style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Arka planı kilitle
+    document.body.style.overflow = 'hidden';
   }
   function closeNotePopup() {
     document.getElementById('popupNote').style.display = 'none';
-    document.body.style.overflow = ''; // Kaydırmayı eski haline getir
+    document.body.style.overflow = '';
   }
-</script> 
+</script>
 
 
 <footer style="text-align: center; margin-top: 40px; padding: 20px; background: #f0f0f0; border-top: 1px solid #ccc;">
