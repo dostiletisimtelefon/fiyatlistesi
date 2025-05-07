@@ -1127,11 +1127,14 @@ window.onload = function() {
 <script>
   function openNotePopup() {
     document.getElementById('popupNote').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Arka planı kilitle
   }
   function closeNotePopup() {
     document.getElementById('popupNote').style.display = 'none';
+    document.body.style.overflow = ''; // Kaydırmayı eski haline getir
   }
 </script>
+
 <footer style="text-align: center; margin-top: 40px; padding: 20px; background: #f0f0f0; border-top: 1px solid #ccc;">
   <div style="font-size: 16px; font-weight: bold; color: #333; margin-bottom: 8px;">
     👁️ Sayfa Görüntülenme Sayısı
