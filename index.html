@@ -1087,25 +1087,43 @@ window.onload = function() {
   }
 };
 </script>
-<!-- Sipariş Notları Popup -->
-<div id="popupNote" style="display:none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);">
-  <div style="background: white; max-width: 500px; margin: 100px auto; padding: 20px; border-radius: 8px; position: relative; font-size: 14px; line-height: 1.5; text-align:left;">
-    <button onclick="closeNotePopup()" style="position: absolute; top: 10px; right: 12px; background: #dc3545; color: white; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer;">Kapat</button>
-    <strong>•</strong> Cihazların hepsi yurt dışı olup kayıtsızdır.<br/>
-    <strong>•</strong> İstek üzerine kayıtlı yazan modeller kayıtlı gönderilir.<br/>
-    <strong>•</strong> Dirençle kayıt olan cihazlara kayıt ücreti fiyata eklenir.<br/>
-    <strong>•</strong> Kendi IMEI’nizi verebilirsiniz ancak garantisi yoktur.<br/>
-    <strong>•</strong> IMEI klon/kopya durumunda uygun fiyatla uzaktan destek verilir.<br/>
-    <strong>•</strong> Ürünler orijinal kutulu ve aksesuarları ile gönderilir.<br/>
-    <strong>•</strong> Orijinal şarj olmayan cihazlara Xiaomi şarjı eklenir.<br/>
-    <strong>•</strong> EFT sonrası aynı gün kargoya verilir.<br/>
-    <strong>•</strong> Kargo tesliminde video çekilerek açılması gerekmektedir.<br/>
-    <strong>•</strong> Fabrikasyon hata, yazılımsal/donanımsal arıza durumunda değişim yapılır.<br/>
-    <strong>•</strong> Kargo riski (çalınma, kaybolma, el konulması) alıcıya aittir.
+<!-- SSS / Sipariş Notları Popup -->
+<div id="popupNote" style="display:none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); overflow-y: auto;">
+  <div style="background: white; max-width: 600px; max-height: 90vh; overflow-y: auto; margin: 60px auto; padding: 25px 20px; border-radius: 10px; position: relative; font-size: 14px; line-height: 1.6; text-align:left; color:#333;">
+    <button onclick="closeNotePopup()" style="position: absolute; top: 10px; right: 12px; background: #dc3545; color: white; border: none; border-radius: 4px; padding: 5px 12px; cursor: pointer;">Kapat</button>
+    <h2 style="margin-top:0; color:#007bff;">❓ Sıkça Sorulan Sorular (SSS)</h2>
+
+    <p><strong>📌 Satılan telefonlar kayıtlı mı?</strong><br>Hayır, tüm cihazlar yurt dışı ve kayıtsızdır. Ancak "Kayıtlı" olarak belirtilen modeller kayıtlı şekilde gönderilir.</p>
+
+    <p><strong>📌 IMEI kaydı yapıyor musunuz?</strong><br>Evet, modele göre <u>Dirençle</u>, <u>CPID</u> ya da <u>Server (Samsung)</u> kaydı yapılabilir. Kayıt yöntemi ve ücreti ürün açıklamasında belirtilir. Dilerseniz kendi IMEI’nizi verebilirsiniz.</p>
+
+    <p><strong>📌 Atılan IMEI’lerin garantisi var mı?</strong><br>Atılan IMEI’ler garanti kapsamında değildir. Klona düşme/kopyalanma durumunda sorun uygun fiyatla uzaktan bağlantı yoluyla çözülebilir.</p>
+
+    <p><strong>📌 Telefonlar orijinal mi?</strong><br>Evet. Tüm cihazlarımız %100 orijinal, sıfır ve kullanılmamış ürünlerdir.</p>
+
+<p><strong>📌 Kutu ve ambalaj durumu nedir?</strong><br>Ürünler genellikle <u>özel korumalı ambalaj (fason kutu)</u> ile gönderilir. <u>iPhone ve Samsung modelleri</u> kapalı kutu olarak gelir (değişim yazan modeller hariç). <u>Diğer modellerde</u> kapalı kutu durumu ürün açıklamasında belirtilir. Cihazların tamamı orijinaldir.</p>
+
+    <p><strong>📌 Şarj cihazı orijinal mi?</strong><br>Kutu içeriğinde şarj cihazı varsa orijinal olarak, yoksa Xiaomi marka adaptörle gönderilir.</p>
+
+    <p><strong>📌 Siparişim ne zaman kargoya verilir?</strong><br>EFT ödemesi mesai saatleri içinde yapıldıysa genellikle aynı gün kargoya verilir. Kargo alımı olmazsa gönderim ertesi güne kalabilir.</p>
+
+    <p><strong>📌 Garanti var mı?</strong><br>Cihazlarımız aksi belirtilmedikçe garanti kapsamında değildir. İlk kullanımda sorun yaşanırsa, video kayıtlı teslimatla ilk gün değişim sağlanır.</p>
+
+    <p><strong>📌 Kargoda risk olursa ne olur?</strong><br>Çalınma, kaybolma, el konulması gibi durumlar alıcı sorumluluğundadır. Teslim alırken mutlaka video ile kutu açılışı yapılmalıdır.</p>
+
+    <hr style="margin: 20px 0;">
+
+    <h3 style="color:#007bff;">📌 Kayıt Yöntemleri</h3>
+
+	<p><strong>• Server Kaydı:</strong> Samsung cihazlara yazılımsal IMEI işlemi uygulanır. Hurda Samsung cihaz IMEI’si gereklidir. Kayıt sonrası oluşabilecek sorunların sorumluluğu kullanıcıya aittir.</p>
+
+    <p><strong>• Direnç Kaydı:</strong> Anakart üzerindeki direnç çipine işlem uygulanarak yapılan fiziksel kayıt yöntemidir.</p>
+
+    <p><strong>• CPID Kaydı:</strong> Xiaomi cihazlarda uygulanan tek SIM destekli yazılımsal kayıt yöntemidir. Uzaktan yapılır, cihaz sıfırlanır. Sadece 1 adet şahsi IMEI girilebilir.</p>
   </div>
 </div>
 
-
+<!-- Aç/Kapat Fonksiyonu -->
 <script>
   function openNotePopup() {
     document.getElementById('popupNote').style.display = 'block';
