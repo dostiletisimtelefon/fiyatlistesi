@@ -928,17 +928,19 @@ h2 {
         div.dataset.marka = normalizeTR(p.marka);
         div.dataset.seri = p.seri;
 
-        div.innerHTML = `
+       div.innerHTML = `
       <input type="checkbox" class="compare-checkbox" data-id="${p.model}-${p.ram}-${p.dolar}" onchange="updateCompareList()" style="position:absolute; top:10px; left:10px; transform:scale(1.3); z-index:10;" />
     <label style="position:absolute; top:10px; left:40px; font-size:12px; background:white; padding:2px 4px; border-radius:4px; z-index:10;">Karşılaştır</label>
-          <div class="product-content">
-            <h3>${p.marka} ${p.seri ? '(' + p.seri + ')' : ''}</h3>
-            <h2>${p.model}</h2>
-            <p>RAM/Hafıza: ${p.ram}</p>
-            <p>TL Fiyat: ${showPrice}</p>
-            <p>Dolar: ${p.dolar} $</p>
-            <p>Kayıt: ${p.kayit}</p>
-          </div>
+
+	<hr style="margin: 20px 10px 10px; border: none; border-top: 1px solid #ccc;" />
+	<div class="product-content">
+	  <h3>${p.marka} ${p.seri ? '(' + p.seri + ')' : ''}</h3>
+ 	 <h2>${p.model}</h2>
+  	<p>RAM/Hafıza: ${p.ram}</p>
+  	<p>TL Fiyat: ${showPrice}</p>
+  	<p>Dolar: ${p.dolar} $</p>
+  	<p>Kayıt: ${p.kayit}</p>
+	</div>
           <div class="product-actions">
 			<button class="details-btn" onclick="window.open('${p.link || '#'}', '_blank')">Detaylı Özellikler</button>
             <button class="order-btn" onclick="showWhatsAppOptions(this, '${p.model}', '${p.ram}', '${showPrice}')">Sipariş Ver</button>
