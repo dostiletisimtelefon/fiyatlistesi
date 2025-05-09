@@ -150,23 +150,8 @@
 </style>
 
 
-<style>
-  .stokta-yok {
-    background-color: #e0e0e0 !important;
-    opacity: 0.7;
-  }
-</style>
-<script>
-  function markStoktaYok() {
-    document.querySelectorAll(".product").forEach(p => {
-      const fiyatText = p.querySelector("p:nth-of-type(2)");
-      if (fiyatText && (fiyatText.textContent.includes("ŞİMDİLİK YOK") || fiyatText.textContent.includes("0 ₺"))) {
-        p.classList.add("stokta-yok");
-      }
-    });
-  }
-  window.addEventListener("load", markStoktaYok);
-</script>
+
+
 
 
 
@@ -794,23 +779,35 @@ h2 {
 </style>
 
 
+
 <style>
-  .stokta-yok {
-    background-color: #e0e0e0 !important;
-    opacity: 0.7;
-  }
+ .stokta-yok {
+  position: relative;
+  border-left: 4px solid #dc3545;
+  background-color: #fff5f5;
+  opacity: 0.9;
+}
+
+.stokta-yok::before {
+  content: "TÜKENDİ";
+  position: absolute;
+  top: 70%;
+  left: 20px; /* çizginin hemen içi */
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #dc3545;
+  letter-spacing: 2px;
+  font-family: 'Arial', sans-serif;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+
 </style>
-<script>
-  function markStoktaYok() {
-    document.querySelectorAll(".product").forEach(p => {
-      const fiyatText = p.querySelector("p:nth-of-type(2)");
-      if (fiyatText && (fiyatText.textContent.includes("ŞİMDİLİK YOK") || fiyatText.textContent.includes("0 ₺"))) {
-        p.classList.add("stokta-yok");
-      }
-    });
-  }
-  window.addEventListener("load", markStoktaYok);
-</script>
+</style>
+
 <style>
 <!-- removed old sticky -->
     position: fixed;
@@ -848,19 +845,40 @@ h2 {
     transform: scale(0.95);
     transition: all 0.2s ease;
   }
+
   .filter-bar input,
   .filter-bar select {
     font-size: 14px;
     padding: 6px 8px;
     transition: all 0.2s ease;
   }
+
   .filter-bar-placeholder {
     display: none;
     height: 0px;
   }
+
   .filter-bar.sticky + .filter-bar-placeholder {
     display: block;
     height: 110px;
+  }
+
+  /* MOBİL için ekstra küçültme */
+  @media screen and (max-width: 600px) {
+    .filter-bar.sticky {
+      transform: scale(0.90);
+      padding: 4px 6px;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+      font-size: 12px;
+      padding: 4px 6px;
+    }
+
+    .filter-bar.sticky + .filter-bar-placeholder {
+      height: 95px;
+    }
   }
 </style>
 
@@ -885,16 +903,21 @@ h2 {
     window.addEventListener("scroll", checkSticky);
 
     // Stokta yok kontrol fonksiyonu
-    function updateStoktaYokGorunum() {
-      document.querySelectorAll(".product").forEach(p => {
-        const fiyatText = p.querySelector("p:nth-of-type(2)");
-        if (fiyatText && (fiyatText.textContent.includes("ŞİMDİLİK YOK") || fiyatText.textContent.includes("0 ₺"))) {
-          p.classList.add("stokta-yok");
-        } else {
-          p.classList.remove("stokta-yok");
-        }
-      });
+function updateStoktaYokGorunum() {
+  document.querySelectorAll(".product").forEach(p => {
+    const fiyatText = p.querySelector("p:nth-of-type(2)");
+    if (fiyatText) {
+      const fiyat = fiyatText.textContent.replace(/[^\d]/g, ""); // sadece rakamları al
+      const fiyatDegeri = parseInt(fiyat, 10); // sayı olarak dönüştür
+      if (isNaN(fiyatDegeri) || fiyatDegeri === 0) {
+        p.classList.add("stokta-yok");
+      } else {
+        p.classList.remove("stokta-yok");
+      }
     }
+  });
+}
+
 
     // Liste değişince sticky + stok kontrol et
     const listContainer = document.querySelector(".product-list");
