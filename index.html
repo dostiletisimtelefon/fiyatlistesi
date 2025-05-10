@@ -149,6 +149,12 @@
 
 </style>
 
+
+
+
+
+
+
 </head>
 
   <style>
@@ -772,6 +778,167 @@ h2 {
 
 </style>
 
+
+
+<style>
+ .stokta-yok {
+  position: relative;
+  border-left: 4px solid #dc3545;
+  background-color: #fff5f5;
+  opacity: 0.9;
+}
+
+.stokta-yok::before {
+  content: "TÜKENDİ";
+  position: absolute;
+  top: 70%;
+  left: 20px; /* çizginin hemen içi */
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #dc3545;
+  letter-spacing: 2px;
+  font-family: 'Arial', sans-serif;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+
+</style>
+</style>
+
+<style>
+<!-- removed old sticky -->
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .filter-bar-placeholder {
+    display: none;
+    height: 0px;
+  }
+  .filter-bar.sticky + .filter-bar-placeholder {
+    display: block;
+    height: 150px;
+  }
+</style>
+
+
+<style>
+  .filter-bar.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #f4f4f4;
+    padding: 6px 10px;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transform: scale(0.95);
+    transition: all 0.2s ease;
+  }
+
+  .filter-bar input,
+  .filter-bar select {
+    font-size: 14px;
+    padding: 6px 8px;
+    transition: all 0.2s ease;
+  }
+
+  .filter-bar-placeholder {
+    display: none;
+    height: 0px;
+  }
+
+  .filter-bar.sticky + .filter-bar-placeholder {
+    display: block;
+    height: 110px;
+  }
+
+  /* MOBİL için ekstra küçültme */
+  @media screen and (max-width: 600px) {
+    .filter-bar.sticky {
+      transform: scale(0.90);
+      padding: 4px 6px;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+      font-size: 12px;
+      padding: 4px 6px;
+    }
+
+    .filter-bar.sticky + .filter-bar-placeholder {
+      height: 95px;
+    }
+  }
+</style>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const filterBar = document.querySelector(".filter-bar");
+    const placeholder = document.querySelector(".filter-bar-placeholder");
+    const stickyOffset = 250;
+
+    function checkSticky() {
+      if (!filterBar || !placeholder) return;
+      if (window.scrollY >= stickyOffset) {
+        filterBar.classList.add("sticky");
+        placeholder.style.display = "block";
+      } else {
+        filterBar.classList.remove("sticky");
+        placeholder.style.display = "none";
+      }
+    }
+
+    window.addEventListener("scroll", checkSticky);
+
+    // Stokta yok kontrol fonksiyonu
+function updateStoktaYokGorunum() {
+  document.querySelectorAll(".product").forEach(p => {
+    const fiyatText = p.querySelector("p:nth-of-type(2)");
+    if (fiyatText) {
+      const fiyat = fiyatText.textContent.replace(/[^\d]/g, ""); // sadece rakamları al
+      const fiyatDegeri = parseInt(fiyat, 10); // sayı olarak dönüştür
+      if (isNaN(fiyatDegeri) || fiyatDegeri === 0) {
+        p.classList.add("stokta-yok");
+      } else {
+        p.classList.remove("stokta-yok");
+      }
+    }
+  });
+}
+
+
+    // Liste değişince sticky + stok kontrol et
+    const listContainer = document.querySelector(".product-list");
+    const observer = new MutationObserver(() => {
+      setTimeout(() => {
+        checkSticky();
+        updateStoktaYokGorunum();
+
+        
+      }, 100);
+    });
+
+    if (listContainer) {
+      observer.observe(listContainer, { childList: true, subtree: true });
+    }
+
+    // İlk yüklemede stok durumu kontrolü
+    updateStoktaYokGorunum();
+  });
+</script>
+
 </head><body><div class="top-container">
 <div class="logo-title-container">
 <img alt="Logo" class="logo-image" src="https://i.hizliresim.com/56pyamb.png"/>
@@ -842,6 +1009,7 @@ h2 {
         console.error("Kur bilgisi alınamadı:", err);
       });
   </script><h2>Telefon Fiyat Listesi</h2><div class="filter-bar">
+
 <input id="manualSearch" oninput="applyFilters()" placeholder="Model ara..." type="text"/>
 <select id="brandInput" onchange="populateSeries(); applyFilters()">
 <option value="">Tüm Markalar</option>
@@ -853,7 +1021,9 @@ h2 {
 <option value="">Tüm RAM/Hafıza</option>
 </select>
 <input id="maxPrice" oninput="applyFilters()" placeholder="Max ₺" type="number"/>
-</div><div class="product-list" id="productList"></div><script>
+</div>
+<div class="filter-bar-placeholder"></div>
+<div class="product-list" id="productList"></div><script>
     const sheetUrl = "https://opensheet.elk.sh/1dW22vejGhG_SlydJ5vAhrraDpI6DdKITniAtBaGL3Xo/veriver";
     let allProducts = [];
 
@@ -1082,9 +1252,7 @@ window.onscroll = function() {
     document.body.scrollTop > 200 || document.documentElement.scrollTop > 200 ? "block" : "none";
 };
 
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+
 </script>
 <div id="orderPopup" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center;">
 <div style="background: white; padding: 20px; border-radius: 10px; max-width: 320px; width: 90%; text-align: center;">
