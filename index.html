@@ -387,14 +387,12 @@ h2 {
       background-color: #e0a800;
     }
     
-    /* Parmak dostu buton boyutu */
     button,
     .group-buttons a {
       padding: 12px 14px;
       font-size: 15px;
     }
 
-    /* Ürün kutusu dokunma efekti */
     .product {
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -403,14 +401,12 @@ h2 {
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
 
-    /* WhatsApp butonlarını daha büyük ve bariz yap */
     .whatsapp-options button {
       font-size: 15px;
       padding: 10px 14px;
       gap: 10px;
     }
 
-    /* Mobilde daha kompakt görünüm */
     @media (max-width: 480px) {
       .product h2 {
         font-size: 18px;
@@ -424,7 +420,6 @@ h2 {
       }
     }
     
-/* Yukarı çık butonu */
 #scrollTopBtn {
   display: none;
   position: fixed;
@@ -863,7 +858,6 @@ h2 {
     height: 110px;
   }
 
-  /* MOBİL için ekstra küçültme */
   @media screen and (max-width: 600px) {
     .filter-bar.sticky {
       transform: scale(0.90);
@@ -902,7 +896,6 @@ h2 {
 
     window.addEventListener("scroll", checkSticky);
 
-    // Stokta yok kontrol fonksiyonu
 function updateStoktaYokGorunum() {
   document.querySelectorAll(".product").forEach(p => {
     const fiyatText = p.querySelector("p:nth-of-type(2)");
@@ -919,7 +912,6 @@ function updateStoktaYokGorunum() {
 }
 
 
-    // Liste değişince sticky + stok kontrol et
     const listContainer = document.querySelector(".product-list");
     const observer = new MutationObserver(() => {
       setTimeout(() => {
@@ -934,7 +926,6 @@ function updateStoktaYokGorunum() {
       observer.observe(listContainer, { childList: true, subtree: true });
     }
 
-    // İlk yüklemede stok durumu kontrolü
     updateStoktaYokGorunum();
   });
 </script>
@@ -1246,7 +1237,6 @@ function updateStoktaYokGorunum() {
         renderProducts(allProducts);
       });
   </script><button id="scrollTopBtn" onclick="scrollToTop()"><img alt="↑" src="https://cdn-icons-png.flaticon.com/512/130/130906.png"/></button><script>
-// Yukarı çık butonu göster/gizle
 window.onscroll = function() {
   document.getElementById("scrollTopBtn").style.display =
     document.body.scrollTop > 200 || document.documentElement.scrollTop > 200 ? "block" : "none";
