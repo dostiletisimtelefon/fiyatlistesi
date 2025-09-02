@@ -1,0 +1,251 @@
+/* Genel stil ayarları */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+}
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+header {
+    background-color: #f0f2f5;
+    color: #000;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 4px solid #0B3141;
+}
+.logo img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 5px;
+}
+header h1 {
+    font-size: 2.2em;
+    margin-bottom: 5px;
+    color: #E61A00;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+header .date {
+    font-size: 1em;
+    font-weight: bold;
+    color: #666;
+}
+.contact-info {
+    background-color: #0B3141;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: bold;
+}
+.contact-item i {
+    color: #25D366;
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+.contact-item .phone-number {
+    margin-left: 5px;
+    color: #FFEB3B;
+}
+.social-link {
+    display: block;
+    margin: 8px auto;
+    padding: 10px 20px;
+    background-color: #1a465b;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    max-width: 350px;
+}
+.social-link i {
+    margin-right: 10px;
+}
+.social-link.whatsapp-group i { color: #25D366; }
+.social-link.facebook-group i { color: #3B5998; }
+.social-link.telegram-group i { color: #0088CC; }
+.social-link:hover {
+    background-color: #25516B;
+    transform: translateY(-2px);
+}
+.currency-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFC107;
+    padding: 15px 20px;
+    color: #000;
+    font-weight: bold;
+}
+.currency-box {
+    background-color: #6C0200;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-align: center;
+    flex-grow: 1;
+    margin-right: 20px;
+}
+.currency-box .box-title {
+    font-size: 0.9em;
+    margin-bottom: 3px;
+    opacity: 0.8;
+}
+.currency-box .currency-value {
+    font-size: 1.8em;
+}
+.currency-date {
+    font-size: 0.9em;
+    text-align: right;
+    color: #555;
+}
+.references-line {
+    background-color: #0B3141;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+/*-----------------------------------------------------------*/
+
+/* TABLO STİLLERİ */
+.price-table {
+    overflow-x: hidden; /* Yatay kaydırmayı tamamen kaldırır */
+    padding: 0 5px;
+}
+.price-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.price-table th,
+.price-table td {
+    padding: 5px 2px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.6em;
+}
+.price-table thead th {
+    background-color: #0B3141;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.7em;
+    padding: 8px 2px;
+}
+.price-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.price-table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.2s ease;
+}
+.brand-header td {
+    background-color: #FFC107;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 0.9em;
+}
+.brand-header .brand-logo-name {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+.brand-header .brand-logo-name img {
+    height: 25px;
+    margin-right: 5px;
+}
+.brand-header .series-name {
+    font-size: 0.8em;
+    color: #E61A00;
+}
+.model-suffix {
+    font-weight: bold;
+}
+.status-ok {
+    background-color: #e0f2d6;
+    color: #21610b;
+}
+.status-ok i {
+    color: #21610b;
+    margin-left: 2px;
+}
+.status-extra-fee {
+    background-color: #f3f5e9;
+    color: #555;
+    font-size: 0.6em;
+    line-height: 1.1;
+    padding: 5px 1px;
+}
+.error-value {
+    color: #E61A00;
+    font-weight: bold;
+}
+
+/* YENİ BUTON STİLLERİ */
+.action-cell p {
+    margin: 2px 0;
+}
+.order-btn, .detail-btn {
+    display: block; /* Butonları alt alta getirir */
+    background-color: #28a745;
+    color: #fff;
+    padding: 5px; /* Buton dolgusunu küçültür */
+    border-radius: 2px;
+    font-size: 0.6em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+.order-btn.disabled {
+    background-color: #b0b0b0;
+    cursor: not-allowed;
+}
+.detail-btn {
+    background-color: #007bff;
+}
+.order-btn:hover:not(.disabled), .detail-btn:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .brand-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .brand-header .series-name {
+        margin-top: 5px;
+    }
+}
