@@ -134,7 +134,7 @@ header .date {
 
 /* TABLO STİLLERİ */
 .price-table {
-    overflow-x: hidden; /* Yatay kaydırmayı tamamen kaldırır */
+    overflow-x: hidden;
     padding: 0 5px;
 }
 .price-table table {
@@ -215,10 +215,10 @@ header .date {
     margin: 2px 0;
 }
 .order-btn, .detail-btn {
-    display: block; /* Butonları alt alta getirir */
+    display: block;
     background-color: #28a745;
     color: #fff;
-    padding: 5px; /* Buton dolgusunu küçültür */
+    padding: 5px;
     border-radius: 2px;
     font-size: 0.6em;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -235,6 +235,13 @@ header .date {
     background-color: #218838;
     transform: translateY(-1px);
 }
+
+/* MODEL KISMINI DARALTMAK İÇİN YENİ KOD */
+.model-col {
+    width: 25%; /* Bu değeri azaltarak model sütununu daraltabilirsiniz */
+    max-width: 25%;
+}
+
 @media (max-width: 768px) {
     .container {
         margin: 0;
