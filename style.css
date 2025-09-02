@@ -147,7 +147,7 @@ header .date {
     border: 1px solid #e0e0e0;
     text-align: center;
     vertical-align: middle;
-    font-size: 0.6em;
+    font-size: 0.85em;
 }
 .price-table thead th {
     background-color: #0B3141;
@@ -238,15 +238,58 @@ header .date {
 
 /* MODEL KISMINI DARALTMAK İÇİN YENİ KOD */
 .model-col {
-    width: 25%; /* Bu değeri azaltarak model sütununu daraltabilirsiniz */
-    max-width: 25%;
+    width: 20%;
+    max-width: 20%;
 }
 
+/* TELEFON EKRANLARI İÇİN LOGO VE BAŞLIKLARI KÜÇÜLTME */
 @media (max-width: 768px) {
     .container {
         margin: 0;
         border-radius: 0;
         box-shadow: none;
+    }
+    header {
+        padding: 10px 0; /* Başlık alanını daraltır */
+    }
+    .logo img {
+        max-width: 100px; /* Logoyu küçültür */
+    }
+    header h1 {
+        font-size: 1.5em; /* Ana başlığı küçültür */
+    }
+    header .date {
+        font-size: 0.8em; /* Tarih yazısını küçültür */
+    }
+    .contact-info {
+        padding: 10px; /* İletişim bölümünü daraltır */
+    }
+    .contact-item {
+        font-size: 0.8em; /* İletişim yazılarını küçültür */
+    }
+    .social-link {
+        font-size: 0.8em; /* Sosyal medya butonlarını küçültür */
+    }
+    .currency-info {
+        padding: 10px; /* Kur bilgisini daraltır */
+    }
+    .currency-box {
+        padding: 5px 10px; /* Kur kutusunu daraltır */
+    }
+    .currency-box .currency-value {
+        font-size: 1.2em; /* Kur değerini küçültür */
+    }
+    .brand-header td {
+        font-size: 0.8em;
+    }
+    .brand-header .brand-logo-name {
+        font-size: 0.9em;
+    }
+    .brand-header .brand-logo-name img {
+        height: 20px;
+    }
+    .brand-header .series-name {
+        font-size: 0.7em;
     }
     .brand-header {
         flex-direction: column;
