@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOST İLETİŞİM - Fiyat Listesi</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    position: relative;
+    background: #fff;
+    padding: 25px 20px 30px 20px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .logo {
+    max-width: 130px;
+    margin-bottom: 1px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    color: #0d6efd;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-excel {
+    background: linear-gradient(90deg,#16a34a,#22c55e);
+    color: #fff;
+  }
+
+  .btn-excel:hover {
+    background: linear-gradient(90deg,#15803d,#16a34a);
+  }
+
+  .btn-web {
+    background: linear-gradient(90deg,#2563eb,#3b82f6);
+    color: #fff;
+  }
+
+  .btn-web:hover {
+    background: linear-gradient(90deg,#1d4ed8,#2563eb);
+  }
+
+  small {
+    display: block;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .button-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 15px 0;
+  }
+
+  .btn-whatsapp {
+    flex: 1;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .btn-whatsapp:hover {
+    background: #128C7E;
+  }
+
+  .app-section {
+    margin-top: 3px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .app-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.app-icons img {
+    width: 140px !important;
+    height: auto !important;
+}
+
+  .logo-slider {
+    overflow: hidden;
+    white-space: nowrap;
+    height: 90px;
+    position: relative;
+    background: #fff;
+    margin: 0px 0 0px 0;
+  }
+
+  .logo-track {
+    display: inline-flex;
+    animation: scroll-left 20s linear infinite;
+  }
+
+  .logo-track.reverse {
+    animation: scroll-right 20s linear infinite;
+  }
+
+  .logo-track div {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+  }
+
+  .logo-track div img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+
+  .logo-track div img:hover {
+    transform: scale(1.2);
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  @media (max-width:600px){
+    .logo-track div { width: 50px; height: 50px; margin: 0 10px; }
+    .app-icons img { width: 80px; }
+  }
+
+  /* İnce çizgi */
+  .divider {
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0 15px 0;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+ 
+  <!-- Ana içerik -->
+  <img src="https://i.hizliresim.com/56pyamb.png" alt="Dost İletişim" class="logo">
+  <h1>DOST İLETİŞİM</h1>
+
+  <!-- WhatsApp -->
+  <div class="button-row">
+    <a href="https://wa.me/905356419868" target="_blank" class="btn-whatsapp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px; vertical-align:middle; margin-right:8px;">
+      Miskin Adak - 0535 641 98 68
+    </a>
+    <a href="https://wa.me/905369973191" target="_blank" class="btn-whatsapp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px; vertical-align:middle; margin-right:8px;">
+      Murat Uğur - 0536 997 31 91
+    </a>
+  </div>
+
+  <p>Fiyat listemize aşağıdaki yöntemlerden biriyle ulaşabilirsiniz.</p>
+  <button class="btn btn-web" onclick="window.location.href='https://dostiletisimtelefon.github.io/fiyatlistesi/'">
+    🌐 Web Sitesi Üzerinden Görüntüle
+  </button>
+  <small>Web üzerinden gelişmiş arama, filtreleme ve karşılaştırma özellikleriyle detaylı inceleme yapabilirsiniz.</small>
+
+  <button class="btn btn-excel" onclick="window.location.href='https://docs.google.com/spreadsheets/d/1dW22vejGhG_SlydJ5vAhrraDpI6DdKITniAtBaGL3Xo/edit?gid=2138715275#gid=2138715275'">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" alt="Excel" style="width:20px; vertical-align:middle; margin-right:8px;">
+    Excel Fiyat Listesi
+  </button>
+  <small>Google E-Tablolar üzerinden standart listeye erişebilir, ancak gelişmiş filtreleme ve karşılaştırma mevcut değildir.</small>
+
+  <div class="app-section">
+    <p>E-Tablolar üzerinden listeyi tam ve eksiksiz görebilmek için telefonunuzda E-Tablolar uygulamasının yüklü olması gerekmektedir. İndirmek için aşağıdaki bağlantıları kullanabilirsiniz.</p>
+    <div class="app-icons">
+      <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.sheets&hl=tr" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store">
+      </a>
+      <a href="https://apps.apple.com/tr/app/google-e-tablolar/id842849113?l=tr" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+      </a>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Alt logolar -->
+  <div class="logo-slider">
+    <div class="logo-track reverse">
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Infinix_logo.svg" alt="Infinix"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Tecno_Mobile_logo.svg" alt="Tecno Mobile"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
+      <div><img src="https://www.kindpng.com/picc/m/69-695766_red-magic-logo-hd-png-download.png" alt="Redmagic"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Nubia_logo.svg" alt="Nubia"></div>
+      <div><img src="https://images.seeklogo.com/logo-png/37/1/oneplus-logo-png_seeklogo-372201.png" alt="OnePlus"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="iPhone"></div>
+      <!-- Tekrar -->
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Infinix_logo.svg" alt="Infinix"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Tecno_Mobile_logo.svg" alt="Tecno Mobile"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
+      <div><img src="https://www.kindpng.com/picc/m/69-695766_red-magic-logo-hd-png-download.png" alt="Redmagic"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Nubia_logo.svg" alt="Nubia"></div>
+      <div><img src="https://images.seeklogo.com/logo-png/37/1/oneplus-logo-png_seeklogo-372201.png" alt="OnePlus"></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="iPhone"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
