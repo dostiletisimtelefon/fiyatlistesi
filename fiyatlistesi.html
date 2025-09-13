@@ -1,3 +1,4 @@
+
 <head>
   <meta charset="utf-8" />
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -13,6 +14,41 @@
   <meta name="description" content="WhatsApp sipariş, RAM filtreleme, güncel dolar kuru ve hızlı erişim!" />
 
 <style>
+.status-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;       /* ortala */
+  margin-top: 6px;
+}
+
+.status-buttons button {
+  padding: 8px 14px;             /* biraz daha dolgun */
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f4f4f4;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);      /* hafif gölge */
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.status-buttons button:hover {
+  background: #e9ecef;           /* hover rengi */
+}
+
+.status-buttons button:active {
+  transform: scale(0.96);        /* tıklama hissi */
+}
+
+.status-buttons button.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+  box-shadow: 0 2px 6px rgba(0,123,255,0.35);  /* aktifken mavi gölge */
+}
+
 
 
 .product {
@@ -199,38 +235,35 @@
       min-width: 150px;
     }
     .group-buttons a img {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
     }
 
     .currency-box {
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      padding: 10px 20px;
-      background-color: #fff;
-      display: inline-block;
-      text-align: center;
-      margin-top: 10px;
-    }
-    .currency-source {
-      font-size: 13px;
-      font-weight: bold;
-      color: #666;
-    }
-    .currency-divider {
-      border-bottom: 1px solid #ccc;
-      margin: 6px 0;
-    }
-    .currency-date {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 6px;
-    }
-    .currency-value {
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-    }
+  padding: 6px 12px;      /* iç boşluğu azalt */
+  border: 1px solid #ccc; /* çerçeveyi incelt */
+  border-radius: 6px;     /* köşeleri biraz küçült */
+  display: inline-block;
+}
+
+.currency-source {
+  font-size: 12px;        /* üst yazı */
+  font-weight: 600;
+}
+
+.currency-divider {
+  margin: 4px 0;          /* çizgi arası boşluk */
+}
+
+.currency-date {
+  font-size: 12px;        /* tarih satırı */
+  margin-bottom: 4px;
+}
+
+.currency-value {
+  font-size: 14px;        /* kur değeri */
+  font-weight: bold;
+}
 
     .whatsapp-buttons {
       display: flex;
@@ -250,8 +283,8 @@
       gap: 6px;
     }
     .whatsapp-buttons a img {
-      width: 18px;
-      height: 18px;
+      width: 30px;
+      height: 30px;
     }
     .whatsapp-buttons a .wp-text {
       display: flex;
@@ -314,7 +347,7 @@
 
 /* Sayfa boşluklarını sıkılaştır */
 .top-container {
-  margin-bottom: 10px !important;
+  margin-bottom: 8px !important;
 }
 .note-button {
   margin-top: 6px !important;
@@ -332,7 +365,7 @@ h2 {
   margin-bottom: 10px;
 }
 .logo-image {
-  max-height: 60px;
+  max-height: 55px;
   width: auto;
 }
 .logo-text {
@@ -776,32 +809,85 @@ h2 {
 
 
 <style>
- .stokta-yok {
-  position: relative;
-  border-left: 4px solid #dc3545;
-  background-color: #fff5f5;
-  opacity: 0.9;
-}
-
-.stokta-yok::before {
-  content: "TÜKENDİ";
+/* Ortak yerleşim: solda dikey rozet metni */
+.product { position: relative; }
+.product::before {
+  content: attr(data-badge);
   position: absolute;
   top: 70%;
-  left: 20px; /* çizginin hemen içi */
+  left: 20px;
   transform: translateY(-50%) rotate(-90deg);
   transform-origin: left center;
   font-size: 30px;
   font-weight: bold;
-  color: #dc3545;
   letter-spacing: 2px;
-  font-family: 'Arial', sans-serif;
   pointer-events: none;
   white-space: nowrap;
+  display: none;   /* varsayılan: gizli */
 }
 
+/* ───────── TÜKENDİ (kırmızı) ───────── */
+.product.badge-soldout {
+  border-left: 4px solid #dc3545;
+  background-color: #fff5f5;
+}
+.product.badge-soldout::before {
+  color: #dc3545;
+  display: block;
+}
 
+/* ───────── ÖN SİPARİŞ (mavi + ikon) ───────── */
+@keyframes preorderBlink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.4; }
+}
+.product.badge-preorder {
+  border-left: 4px solid #0d6efd;
+  background-color: #e6f0ff;
+  position: relative;
+}
+
+/* Dikey yazı + ikon + blink */
+.product.badge-preorder::before {
+  content: attr(data-badge);
+  position: absolute;
+  top: 75%;
+  left: 20px;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-size: 30px;              /* yazı boyu */
+  font-weight: bold;
+  letter-spacing: 2px;
+  pointer-events: none;
+  white-space: nowrap;
+  color: #0d6efd;
+  display: block;
+
+  /* ikon arka planı */
+  padding-left: 40px;           /* ikon ile yazı arası boşluk */
+  background: url("https://raw.githubusercontent.com/dostiletisimtelefon/dostiletisimtelefon.github.io/refs/heads/main/pre-order.png")
+             no-repeat left center;
+  background-size: 30px auto;   /* ikon yüksekliği yazı (30px) ile aynı */
+
+  /* yanıp sönme efekti */
+  animation: preorderBlink 1.2s ease-in-out infinite;
+}
+
+/* ───────── YENİ MODEL (yeşil, yanıp-sönme) ───────── */
+@keyframes newBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.product.badge-new {
+  border-left: 4px solid #198754;
+}
+.product.badge-new::before {
+  color: #198754;
+  display: block;
+  animation: newBlink 1.2s ease-in-out infinite;
+}
 </style>
-</style>
+
 
 <style>
 <!-- removed old sticky -->
@@ -898,19 +984,49 @@ h2 {
 
 function updateStoktaYokGorunum() {
   document.querySelectorAll(".product").forEach(p => {
-    const fiyatText = p.querySelector("p:nth-of-type(2)");
+    // Temizle
+    p.classList.remove("badge-soldout","badge-preorder","badge-new","stokta-yok");
+    p.removeAttribute("data-badge");
+
+    // 1) Fiyat kontrolü (ÖNCELİK BURADA)
+    const fiyatText = p.querySelector("p:nth-of-type(2)"); // "TL Fiyat: ..." satırı
+    let isSoldOutByPrice = false;
     if (fiyatText) {
-      const fiyat = fiyatText.textContent.replace(/[^\d]/g, ""); // sadece rakamları al
-      const fiyatDegeri = parseInt(fiyat, 10); // sayı olarak dönüştür
+      const fiyat = fiyatText.textContent.replace(/[^\d]/g, "");
+      const fiyatDegeri = parseInt(fiyat, 10);
       if (isNaN(fiyatDegeri) || fiyatDegeri === 0) {
-        p.classList.add("stokta-yok");
-      } else {
-        p.classList.remove("stokta-yok");
+        isSoldOutByPrice = true;
       }
     }
+    if (isSoldOutByPrice) {
+      p.classList.add("badge-soldout");
+      p.setAttribute("data-badge", "TÜKENDİ");
+      return; // Fiyat yoksa diğer rozetlere bakma
+    }
+
+    // 2) Model etiketleri (ham model adı üzerinden)
+    const rawModel =
+      (p.getAttribute("data-raw-model") ||
+       p.querySelector("h2")?.textContent ||
+       "").toLocaleUpperCase('tr-TR');
+
+    // (ÖS) → ÖN SİPARİŞ
+    if (/\(\s*ÖS\s*\)/.test(rawModel)) {
+      p.classList.add("badge-preorder");
+      p.setAttribute("data-badge", "ÖN SİPARİŞ");
+      return;
+    }
+
+    // (YENİ MODEL) → YENİ MODEL
+    if (/\(\s*YENİ\s*MODEL\s*\)/.test(rawModel)) {
+      p.classList.add("badge-new");
+      p.setAttribute("data-badge", "YENİ MODEL");
+      return;
+    }
+
+    // Diğer durumlarda rozet yok
   });
 }
-
 
     const listContainer = document.querySelector(".product-list");
     const observer = new MutationObserver(() => {
@@ -1000,6 +1116,7 @@ function updateStoktaYokGorunum() {
         console.error("Kur bilgisi alınamadı:", err);
       });
   </script><h2>Telefon Fiyat Listesi</h2><div class="filter-bar">
+  
 
 <input id="manualSearch" oninput="applyFilters()" placeholder="Model ara..." type="text"/>
 <select id="brandInput" onchange="populateSeries(); applyFilters()">
@@ -1013,7 +1130,14 @@ function updateStoktaYokGorunum() {
 </select>
 <input id="maxPrice" oninput="applyFilters()" placeholder="Max ₺" type="number"/>
 </div>
+
 <div class="filter-bar-placeholder"></div>
+<div class="status-buttons">
+  <button type="button" id="btnNew" onclick="toggleStatus('new')">Yeni Modeller</button>
+  <button type="button" id="btnPre" onclick="toggleStatus('preorder')">Ön Sipariş</button>
+</div>
+<br>
+
 <div class="product-list" id="productList"></div><script>
     const sheetUrl = "https://opensheet.elk.sh/1dW22vejGhG_SlydJ5vAhrraDpI6DdKITniAtBaGL3Xo/veriver";
     let allProducts = [];
@@ -1049,6 +1173,7 @@ function updateStoktaYokGorunum() {
       if (m.includes("nubia")) return "Nubia";
       if (m.includes("oneplus")) return "OnePlus";
       if (m.includes("iphone")) return "iPhone";
+	  if (m.includes("tablet")) return "Tablet";
       if (m.includes("tablet")) return "Tablet";
       return "Diğer";
     }
@@ -1083,7 +1208,22 @@ function updateStoktaYokGorunum() {
   return "";
 }
     
+let statusFilter = ""; // global değişken
 
+function toggleStatus(type) {
+  // aynı butona tekrar basılırsa kaldır
+  if (statusFilter === type) {
+    statusFilter = "";
+  } else {
+    statusFilter = type;
+  }
+
+  // aktif classlarını güncelle
+  document.getElementById('btnNew').classList.toggle('active', statusFilter === 'new');
+  document.getElementById('btnPre').classList.toggle('active', statusFilter === 'preorder');
+
+  applyFilters();
+}
     function applyFilters() {
       const searchInput = normalizeTR(document.getElementById('manualSearch').value);
       const ram = document.getElementById('ramInput').value;
@@ -1100,16 +1240,24 @@ function updateStoktaYokGorunum() {
         const pPriceRaw = (p.fiyat || "").replaceAll('.', '').replace(',', '.');
         const pPrice = parseFloat(pPriceRaw);
 		const passesPriceFilter = isNaN(pPrice) ? (!maxPriceInput || maxPrice === Infinity) : pPrice <= maxPrice;
+let passesStatus = true;
+const modelForStatus = normalizeTR(p.model || ""); // ö/ü/ş/ı/İ → o/u/s/i...
+if (statusFilter === "new") {
+  passesStatus = /\(\s*yeni\s*model\s*\)/.test(modelForStatus);
+} else if (statusFilter === "preorder") {
+  passesStatus = /\(\s*os\s*\)/.test(modelForStatus); // (ÖS) → (os)
+}
 
-        return (!searchInput || pModel.includes(searchInput)) &&
-               (!brand || pBrand === brand) &&
-               (!series || pSeries === series) &&
-               (!ram || ram === pRam) &&
-               passesPriceFilter;
-      });
+    return (!searchInput || pModel.includes(searchInput)) &&
+           (!brand || pBrand === brand) &&
+           (!series || pSeries === series) &&
+           (!ram || ram === pRam) &&
+           passesPriceFilter &&
+           passesStatus; // 👈 eklendi
+  });
 
-      renderProducts(filtered);
-    }
+  renderProducts(filtered);
+}
 
     function renderProducts(products) {
       const container = document.getElementById('productList');
@@ -1120,6 +1268,7 @@ function updateStoktaYokGorunum() {
         const showPrice = isNaN(priceNum) ? "ŞİMDİLİK YOK" : `${p.fiyat} ₺`;
 
         const div = document.createElement('div');
+		div.dataset.rawModel = p.model;
         div.className = "product";
         div.dataset.model = normalizeTR(p.model);
         div.dataset.ram = p.ram;
@@ -1133,6 +1282,7 @@ function updateStoktaYokGorunum() {
   <label for="compare-${p.model}-${p.ram}" class="compare-label">
     <img src="https://img.icons8.com/?size=100&id=11700&format=png&color=000000" alt="Karşılaştır" class="compare-icon">
     <span>Karşılaştırma Listesine Ekle</span>
+	
   </label>
 </div>
 <hr style="margin: 1px 10px 10px; border: none; border-top: 1px solid #ccc;" />
