@@ -109,6 +109,12 @@ body{
   html, body{ min-height:-webkit-fill-available; }
   .shell{ height:-webkit-fill-available; }
 }
+/* Viewport’a sığdırma için */
+.shell.fit {
+  transform-origin: top center;
+  will-change: transform;
+}
+
 </style>
 </head>
 <body>
@@ -318,6 +324,66 @@ document.addEventListener("DOMContentLoaded", ()=>{
   hydrate();
   setTimeout(applyRealHeight,60);
 });
+// gerçek görünür yüksekliği al
+function getVH() {
+  return (window.visualViewport && window.visualViewport.height)
+    ? Math.floor(window.visualViewport.height)
+    : window.innerHeight;
+}
+
+// İçeriği ölçekleyerek tek ekrana sığdır
+function fitToViewport(force = false) {
+  const shell = document.getElementById('shell');
+  if (!shell) return;
+
+  // Kaç px boş kenar bırakmak istiyoruz (üst/alt)
+  const padding = 8; // istersen 10-12 yapabilirsin
+  const vh = getVH() - padding * 2;
+
+  // Ölçek hesabı: içerik yüksekliği / görünür yükseklik
+  // scrollHeight: içeriğin tam yüksekliği
+  const contentH = shell.scrollHeight;
+
+  // Sadece gerekirse ölçekle (veya URL param fit=1 ise zorla)
+  const mustFit = force || new URL(location.href).searchParams.get('fit') === '1';
+
+  let scale = contentH > vh ? (vh / contentH) : 1;
+  if (!mustFit && scale > 0.98) scale = 1; // çok yakınsa büyü küçü yapma
+
+  if (scale < 1) {
+    shell.classList.add('fit');
+    shell.style.transform = `scale(${scale})`;
+    // Ölçek sonrası boşluk yapmaması için yüksekliği görünür alana sabitle
+    shell.style.height = vh + 'px';
+  } else {
+    shell.classList.remove('fit');
+    shell.style.transform = '';
+    shell.style.height = getVH() + 'px';
+  }
+}
+
+// olay bağları
+function bindFitListeners() {
+  const handler = () => fitToViewport(false);
+  ['resize','orientationchange','scroll'].forEach(e =>
+    window.addEventListener(e, handler, { passive:true })
+  );
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', handler, { passive:true });
+    window.visualViewport.addEventListener('scroll', handler, { passive:true });
+  }
+}
+
+// mevcut DOMContentLoaded bloğunun içine/sonuna şunları ekle:
+document.addEventListener("DOMContentLoaded", () => {
+  // sende zaten var: applyRealHeight(), enableUltra(), hydrate()...
+  // bunlardan SONRA çağır:
+  fitToViewport(false);
+  bindFitListeners();
+});
+
+// İstersen zorla: URL’ye &fit=1 ekle → her koşulda ölçekler
+
 </script>
 </body>
 </html>
