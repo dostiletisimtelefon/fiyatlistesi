@@ -1,120 +1,81 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sipariş Sayfası</title>
 <style>
 :root{--bg:#0f1320;--ink:#0f1a2a;--accent:#25D366;--radius:16px;}
-html,body{height:auto;max-width:100%;overflow-x:hidden;}
+html,body{max-width:100%;overflow-x:hidden;}
 body{
-  margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;
+  margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;color:var(--ink);
   background:
     radial-gradient(1200px 600px at 80% -10%,rgba(46,111,242,.15),transparent 60%),
-    radial-gradient(900px 500px at -10% 20%,rgba(37,211,102,.1),transparent 60%),
-    var(--bg);
-  color:var(--ink);
-  display:flex;justify-content:center;align-items:flex-start;
-  padding:16px;box-sizing:border-box;
-  min-height:100svh;min-height:100dvh;
+    radial-gradient(900px 500px at -10% 20%,rgba(37,211,102,.1),transparent 60%),var(--bg);
+  display:flex;justify-content:center;align-items:flex-start;padding:16px;
+  min-height:100svh;min-height:100dvh;box-sizing:border-box;
 }
 .shell{
-  width:min(1124px,96%);
-  background:linear-gradient(180deg,#fff,#fafbff);
-  border-radius:var(--radius);
-  box-shadow:0 8px 32px rgba(0,0,0,.08);
-  border:1px solid #e9eef6;
-  display:flex;flex-direction:column;
-  height:100svh;height:100dvh;overflow:auto;
+  width:min(1124px,96%);background:linear-gradient(180deg,#fff,#fafbff);
+  border-radius:16px;border:1px solid #e9eef6;box-shadow:0 8px 32px rgba(0,0,0,.08);
+  display:flex;flex-direction:column;overflow:auto;
 }
-.hero{padding:12px;border-bottom:1px solid #eef1f6;flex-shrink:0;}
-.hero img{width:100%;height:auto;max-height:210px;object-fit:contain;border-radius:14px;display:block;}
+.hero{padding:12px;border-bottom:1px solid #eef1f6}
+.hero img{width:100%;height:auto;max-height:180px;object-fit:contain;border-radius:12px;display:block}
 
-.inner{padding:18px;display:grid;gap:16px;}
-.product-card{border:1px solid #e9eef6;border-radius:14px;padding:16px;background:#fff;}
-.product-card h3{font-size:20px;margin:0 0 6px;}
-.product-card p{font-size:17px;margin:4px 0;}
+.inner{padding:14px 16px;display:grid;gap:12px}
+.product-card{background:#fff;border:1px solid #e9eef6;border-radius:12px;padding:12px}
+.product-card h3{margin:0 0 6px;font-size:18px}
+.product-card p{margin:4px 0;font-size:15px}
 .price{color:#e25342;font-weight:700}
 
-.specs-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;
-  background:#fff;border:1px solid #e9eef6;border-radius:14px;padding:10px;
-}
-.spec-item{display:flex;align-items:center;gap:8px;background:#f9fafc;border-radius:8px;padding:6px 8px;font-size:14px;}
-.spec-item i{font-size:18px;}
-.spec-label{font-weight:600;}
-.spec-value{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;max-width:42ch;}
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#fff;border:1px solid #e9eef6;border-radius:12px;padding:10px}
+.spec-item{display:flex;align-items:center;gap:8px;background:#f9fafc;border-radius:8px;padding:6px 8px;font-size:13.5px}
+.spec-item i{font-size:16px}
+.spec-label{font-weight:700}
+.spec-value{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;max-width:38ch}
 
-.people{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.personel{
-  display:grid;grid-template-columns:72px 1fr;align-items:center;gap:12px;
-  border:1px solid #e9eef6;border-radius:12px;padding:12px;background:#fff;
-}
-.brand-square{width:72px;height:72px;border:1px solid #e9eef6;border-radius:10px;display:grid;place-items:center;overflow:hidden;padding:8px;background:#fff}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.personel{display:grid;grid-template-columns:64px 1fr;align-items:center;gap:10px;background:#fff;border:1px solid #e9eef6;border-radius:12px;padding:10px}
+.brand-square{width:64px;height:64px;border:1px solid #e9eef6;border-radius:10px;display:grid;place-items:center;overflow:hidden;padding:6px;background:#fff}
 .brand-square img{width:100%;height:100%;object-fit:contain}
 .info{text-align:center}
-.personel h2{font-size:18px;margin:0;font-weight:700}
-.phone-number{font-size:16px;color:#39455a;margin:6px 0 10px}
-.whatsapp-button{background:var(--accent);color:#fff;font-size:14.5px;padding:7px 12px;border-radius:9px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 2px 6px rgba(37,211,102,.25);}
+.personel h2{margin:0;font-size:16px}
+.phone-number{margin:4px 0 8px;font-size:14px;color:#39455a}
+.whatsapp-button{background:var(--accent);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:9px;font-size:13px;box-shadow:0 2px 6px rgba(37,211,102,.25)}
 .whatsapp-button img{width:18px;height:18px}
 
-.brands{border-top:1px solid #eef1f6;background:#fbfcff;padding:10px;}
-.brand-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:8px;}
-.brand-row h4{font-size:13px;margin:0;font-weight:700;}
-.logo-slider{overflow:hidden;width:100%;}
-.logo-track{display:flex;gap:28px;width:max-content;animation:scroll 18s linear infinite;}
-.logo-slider img{height:24px;}
+.brands{border-top:1px solid #eef1f6;background:#fbfcff;padding:8px}
+.brand-row{display:flex;justify-content:center;margin-bottom:6px}
+.brand-row h4{margin:0;font-size:12px}
+.logo-slider{overflow:hidden}
+.logo-track{display:flex;gap:24px;width:max-content;animation:scroll 18s linear infinite}
+.logo-track img{height:20px}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #eef1f6;background:#ffffffd8;backdrop-filter:blur(5px);padding:10px 14px;font-size:13px;color:#5b677a;flex-shrink:0;}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-top:1px solid #eef1f6;background:#ffffffd8;color:#5b677a;font-size:12px}
 
-/* Mobil */
-@media(max-width:768px){
-  .inner{padding:12px;gap:12px;}
-  .product-card{padding:12px;}
-  .product-card h3{font-size:18px;}
-  .product-card p{font-size:15px;}
-  .people{grid-template-columns:1fr;}
-  .personel{grid-template-columns:64px 1fr;padding:10px;}
-  .brand-square{width:64px;height:64px;}
-  .specs-grid{gap:8px;}
-  .spec-item{font-size:13.5px;padding:5px 6px;}
-  .spec-value{-webkit-line-clamp:2;max-width:32ch;}
-}
+/* Mobil tek sütun personel */
+@media (max-width:768px){ .people{grid-template-columns:1fr} }
 
-/* ---------- ULTRA (OTOMATIK/parametre ile) : personel saklanmaz ---------- */
-.shell.ultra .hero{padding:8px 8px 0}
-.shell.ultra .hero img{max-height:128px;border-radius:12px}
-.shell.ultra .inner{padding:10px;gap:10px}
-.shell.ultra .product-card{padding:10px;border-radius:12px}
-.shell.ultra .product-card h3{font-size:16px;margin-bottom:4px}
-.shell.ultra .product-card p{font-size:14px}
-.shell.ultra .specs-grid{gap:6px;padding:8px 10px}
-.shell.ultra .spec-item{padding:4px 6px;font-size:12.5px}
-.shell.ultra .spec-item i{font-size:16px}
-.shell.ultra .spec-value{-webkit-line-clamp:1;max-width:26ch}
-.shell.ultra .people{gap:10px}
-.shell.ultra .personel{grid-template-columns:56px 1fr;padding:8px;border-radius:10px}
-.shell.ultra .brand-square{width:56px;height:56px;padding:6px}
-.shell.ultra .personel h2{font-size:14px}
-.shell.ultra .phone-number{font-size:12.5px;margin:4px 0 6px}
-.shell.ultra .whatsapp-button{padding:5px 8px;font-size:12px}
-.shell.ultra .brands{padding:6px}
-.shell.ultra .logo-track{gap:16px}
-.shell.ultra .logo-slider img{height:16px}
-.shell.ultra .foot{padding:6px 10px;font-size:11px}
-
-/* iOS güvence */
-@supports (-webkit-touch-callout: none){
-  html, body{ min-height:-webkit-fill-available; }
-  .shell{ height:-webkit-fill-available; }
-}
-/* Viewport’a sığdırma için */
-.shell.fit {
-  transform-origin: top center;
-  will-change: transform;
-}
-
+/* --- COMPACT modu (URL: &compact=1) --- */
+.shell.compact .hero{padding:8px}
+.shell.compact .hero img{max-height:140px}
+.shell.compact .inner{padding:10px;gap:10px}
+.shell.compact .product-card{padding:10px}
+.shell.compact .product-card h3{font-size:16px}
+.shell.compact .product-card p{font-size:14px}
+.shell.compact .specs-grid{gap:6px;padding:8px}
+.shell.compact .spec-item{padding:4px 6px;font-size:12.5px}
+.shell.compact .spec-item i{font-size:15px}
+.shell.compact .spec-value{max-width:28ch}
+.shell.compact .personel{grid-template-columns:56px 1fr;padding:8px}
+.shell.compact .brand-square{width:56px;height:56px}
+.shell.compact .personel h2{font-size:14px}
+.shell.compact .phone-number{font-size:12.5px;margin:4px 0 6px}
+.shell.compact .whatsapp-button{padding:5px 8px;font-size:12px}
+.shell.compact .logo-track img{height:16px}
+.shell.compact .foot{font-size:11px;padding:6px 10px}
 </style>
 </head>
 <body>
@@ -178,65 +139,33 @@ body{
 </div>
 
 <script>
-/* ---- Viewport: gerçek yükseklik + ultra modu ---- */
-function applyRealHeight(){
-  const el=document.getElementById('shell'); if(!el) return;
-  const h = (window.visualViewport && window.visualViewport.height) ? Math.floor(window.visualViewport.height) : window.innerHeight;
-  el.style.height = h + 'px';
-}
-function enableUltra(){
-  const q=new URL(location.href).searchParams;
-  if(q.get('ultra')==='1'){ document.querySelector('.shell')?.classList.add('ultra'); return; }
-  const h=(window.visualViewport?.height||window.innerHeight);
-  if(h<700) document.querySelector('.shell')?.classList.add('ultra'); // kısa ekranlarda otomatik
-}
-['resize','orientationchange','scroll'].forEach(e=>window.addEventListener(e,applyRealHeight,{passive:true}));
-if(window.visualViewport){
-  window.visualViewport.addEventListener('resize',applyRealHeight,{passive:true});
-  window.visualViewport.addEventListener('scroll',applyRealHeight,{passive:true});
-}
-
-/* ---- URL okuma ve formatlama ---- */
+/* ---------- Yardımcılar ---------- */
 function qpRaw(n){ return new URL(location.href).searchParams.get(n) || ""; }
 function qpDec(n){
   let v=qpRaw(n).replace(/\+/g," ").trim();
-  for(let i=0;i<3;i++){ try{ if(/%[0-9a-fA-F]{2}/.test(v)) v=decodeURIComponent(v); }catch(e){break;} }
+  for(let i=0;i<3;i++){ try{ if(/%[0-9a-fA-F]{2}/.test(v)) v=decodeURIComponent(v);}catch(e){break;} }
   return v.trim();
 }
-function isSoldOut(v){return String(v||"").toLowerCase().includes("tükendi");}
-function parseLocalizedNumber(v) {
-  if (!v) return NaN;
-  v = String(v).trim();
-  // Türkçe binlik (.) ve ondalık (,) düzenini düzelt
-  if (/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(v)) v = v.replace(/\./g, '').replace(',', '.');
-  // İngilizce format 1,234.56 → 1234.56
-  else if (/^\d{1,3}(,\d{3})+(\.\d+)?$/.test(v)) v = v.replace(/,/g, '');
-  else v = v.replace(',', '.'); // karışık durumlar
+function isSoldOut(v){ return String(v||"").toLowerCase().includes("tükendi"); }
+
+function parseLocalizedNumber(v){
+  if(!v) return NaN; v=String(v).trim();
+  if(/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(v)) v=v.replace(/\./g,'').replace(',', '.');       // TR
+  else if(/^\d{1,3}(,\d{3})+(\.\d+)?$/.test(v)) v=v.replace(/,/g,'');                      // EN
+  else v=v.replace(',', '.');
   return parseFloat(v);
 }
-
-function formatUSD(v) {
-  if (!v) return "";
-  const n = parseLocalizedNumber(v);
-  if (isNaN(n)) return String(v);
-  return n.toLocaleString("tr-TR", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: (n % 1 === 0 ? 0 : 3)
-  }) + " $";
+function formatUSD(v){
+  if(!v) return ""; const n=parseLocalizedNumber(v);
+  if(isNaN(n)) return String(v);
+  return n.toLocaleString("tr-TR",{minimumFractionDigits:0,maximumFractionDigits:(n%1===0?0:3)})+" $";
+}
+function formatTL(v){
+  if(!v) return ""; const n=parseLocalizedNumber(v);
+  if(isNaN(n)) return String(v);
+  return n.toLocaleString("tr-TR",{minimumFractionDigits:0,maximumFractionDigits:(n%1===0?0:3)})+" TL";
 }
 
-function formatTL(v) {
-  if (!v) return "";
-  const n = parseLocalizedNumber(v);
-  if (isNaN(n)) return String(v);
-  return n.toLocaleString("tr-TR", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: (n % 1 === 0 ? 0 : 3)
-  }) + " TL";
-}
-
-
-/* ---- Specs ayrıştırma ---- */
 function normalizeKey(s){return (s||"").toLocaleLowerCase("tr").replaceAll("ı","i").replaceAll("İ","i").replaceAll("ş","s").replaceAll("ç","c").replaceAll("ğ","g").replaceAll("ö","o").replaceAll("ü","u").replace(/[^\p{L}]/gu,"").trim();}
 const SPEC_KEYS_TR=["İşlemci","Ekran","Kamera","Performans","Gpu","Batarya","Boyutlar","Sensörler","Sensorler","CPU","GPU","Display","Camera","Battery","Dimensions"];
 const SPEC_RE=new RegExp("("+SPEC_KEYS_TR.join("|")+")\\s*:\\s*([^]+?)(?=(?:,\\s*(?:"+SPEC_KEYS_TR.join("|")+")\\s*:)|$)","gi");
@@ -282,7 +211,7 @@ function renderSpecsGrid(specs){
   grid.hidden=!found;
 }
 
-/* ---- Sayfayı doldur ---- */
+/* ---------- Sayfayı doldur ---------- */
 function hydrate(){
   const product=qpDec("product");
   const features=qpDec("features");
@@ -291,11 +220,11 @@ function hydrate(){
   const specsRaw=qpDec("specs");
 
   const sold=isSoldOut(usdRaw)||isSoldOut(tlRaw);
-  const displayPrice= sold ? "Tükendi" : [formatUSD(usdRaw),formatTL(tlRaw)].filter(Boolean).join(" / ");
+  const priceText = sold ? "Tükendi" : [formatUSD(usdRaw), formatTL(tlRaw)].filter(Boolean).join(" / ");
 
   document.getElementById("product_name").textContent="Ürün : "+(product||"");
   document.getElementById("product_features").textContent="Ram Ve Hafıza : "+(features||"");
-  document.getElementById("product_price").textContent="Fiyat: "+displayPrice;
+  document.getElementById("product_price").textContent="Fiyat: "+priceText;
 
   renderSpecsGrid(parseSpecs(specsRaw));
 
@@ -309,81 +238,13 @@ function hydrate(){
   const enc=encodeURIComponent(lines.join("\n"));
   document.getElementById("whatsappButton1").href="https://wa.me/905356419868?text="+enc;
   document.getElementById("whatsappButton2").href="https://wa.me/905369973191?text="+enc;
+
+  // COMPACT modu
+  const q=new URL(location.href).searchParams;
+  if(q.get("compact")==="1") document.getElementById("shell").classList.add("compact");
 }
 
-/* --- decode helper used above --- */
-function qpDec(n){
-  let v=qpRaw(n).replace(/\+/g," ").trim();
-  for(let i=0;i<3;i++){ try{ if(/%[0-9a-fA-F]{2}/.test(v)) v=decodeURIComponent(v);}catch(e){break;} }
-  return v.trim();
-}
-
-document.addEventListener("DOMContentLoaded", ()=>{
-  applyRealHeight();
-  enableUltra();   // kısa ekranlarda otomatik küçült
-  hydrate();
-  setTimeout(applyRealHeight,60);
-});
-// gerçek görünür yüksekliği al
-function getVH() {
-  return (window.visualViewport && window.visualViewport.height)
-    ? Math.floor(window.visualViewport.height)
-    : window.innerHeight;
-}
-
-// İçeriği ölçekleyerek tek ekrana sığdır
-function fitToViewport(force = false) {
-  const shell = document.getElementById('shell');
-  if (!shell) return;
-
-  // Kaç px boş kenar bırakmak istiyoruz (üst/alt)
-  const padding = 8; // istersen 10-12 yapabilirsin
-  const vh = getVH() - padding * 2;
-
-  // Ölçek hesabı: içerik yüksekliği / görünür yükseklik
-  // scrollHeight: içeriğin tam yüksekliği
-  const contentH = shell.scrollHeight;
-
-  // Sadece gerekirse ölçekle (veya URL param fit=1 ise zorla)
-  const mustFit = force || new URL(location.href).searchParams.get('fit') === '1';
-
-  let scale = contentH > vh ? (vh / contentH) : 1;
-  if (!mustFit && scale > 0.98) scale = 1; // çok yakınsa büyü küçü yapma
-
-  if (scale < 1) {
-    shell.classList.add('fit');
-    shell.style.transform = `scale(${scale})`;
-    // Ölçek sonrası boşluk yapmaması için yüksekliği görünür alana sabitle
-    shell.style.height = vh + 'px';
-  } else {
-    shell.classList.remove('fit');
-    shell.style.transform = '';
-    shell.style.height = getVH() + 'px';
-  }
-}
-
-// olay bağları
-function bindFitListeners() {
-  const handler = () => fitToViewport(false);
-  ['resize','orientationchange','scroll'].forEach(e =>
-    window.addEventListener(e, handler, { passive:true })
-  );
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', handler, { passive:true });
-    window.visualViewport.addEventListener('scroll', handler, { passive:true });
-  }
-}
-
-// mevcut DOMContentLoaded bloğunun içine/sonuna şunları ekle:
-document.addEventListener("DOMContentLoaded", () => {
-  // sende zaten var: applyRealHeight(), enableUltra(), hydrate()...
-  // bunlardan SONRA çağır:
-  fitToViewport(false);
-  bindFitListeners();
-});
-
-// İstersen zorla: URL’ye &fit=1 ekle → her koşulda ölçekler
-
+document.addEventListener("DOMContentLoaded", hydrate);
 </script>
 </body>
 </html>
