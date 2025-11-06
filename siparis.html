@@ -269,11 +269,11 @@ function renderSpecsGrid(specs){
 }
 
 function hydrate(){
-  const product=qp("product");
-  const features=qp("features");
-  const usdRaw=qp("price_usd");
-  const tlRaw=qp("price_tl");
-  const specsRaw=qp("specs");
+  const product  = qpDec("product");
+  const features = qpDec("features");
+  const usdRaw   = qpDec("price_usd");
+  const tlRaw    = qpDec("price_tl");
+  const specsRaw = qpDec("specs");
 
   const sold = isSoldOut(usdRaw) || isSoldOut(tlRaw);
   const displayPrice = sold
@@ -308,6 +308,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
   // bazı Android cihazlarda ilk yüklemede 1 frame geç kalıyor; küçük gecikmeli tekrar
   setTimeout(applyRealHeight, 60);
 });
+function qpRaw(n){ return new URL(location.href).searchParams.get(n) || ""; }
+
+// Güvenli decode: + işaretlerini boşluğa çevirir, birden çok kez decode eder
+function qpDec(n){
+  let v = qpRaw(n).replace(/\+/g, " ").trim();
+  for (let i = 0; i < 3; i++){
+    try {
+      if (/%[0-9a-fA-F]{2}/.test(v)) v = decodeURIComponent(v);
+    } catch(e){ break; }
+  }
+  return v.trim();
+}
 </script>
 </body>
 </html>
