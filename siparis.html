@@ -149,10 +149,25 @@ function hydrateFromQuery(){
   const price_usd = qp("price_usd") || "";
   const price_tl  = qp("price_tl") || "";
 
-  const priceText =
-    (price_usd ? price_usd + " $" : "") +
-    (price_usd && price_tl ? " / " : "") +
-    (price_tl ? price_tl + " TL" : "");
+  function formatTL(value){
+  if(!value) return "";
+  // Virgül veya nokta fark etmez, sayıya çevir
+  let num = parseFloat(String(value).replace(",", "."));
+  if(isNaN(num)) return value + " TL";
+  return num.toLocaleString("tr-TR", {minimumFractionDigits: 0, maximumFractionDigits: 0}) + " TL";
+}
+
+function formatUSD(value){
+  if(!value) return "";
+  let num = parseFloat(String(value).replace(",", "."));
+  if(isNaN(num)) return value + " $";
+  return num.toLocaleString("en-US", {minimumFractionDigits: 0, maximumFractionDigits: 2}) + " $";
+}
+
+const priceText =
+  (price_usd ? formatUSD(price_usd) : "") +
+  (price_usd && price_tl ? " / " : "") +
+  (price_tl ? formatTL(price_tl) : "");
 
   document.getElementById("product_name").textContent     = "Ürün : " + (product || "—");
   document.getElementById("product_features").textContent = "Ram Ve Hafıza : " + (features || "—");
@@ -169,3 +184,4 @@ document.addEventListener("DOMContentLoaded", hydrateFromQuery);
 </script>
 </body>
 </html>
+
