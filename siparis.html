@@ -2,76 +2,94 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sipariş Sayfası</title>
 <style>
 :root{
   --bg:#0f1320;--card:#fff;--ink:#0f1a2a;--muted:#5b677a;
-  --accent:#25D366;--radius:16px;
+  --brand:#2E6FF2;--accent:#25D366;--radius:16px;
 }
 body{
   margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;
-  background:
-    radial-gradient(1200px 600px at 80% -10%,rgba(46,111,242,.15),transparent 60%),
-    radial-gradient(900px 500px at -10% 20%,rgba(37,211,102,.1),transparent 60%),
-    var(--bg);
-  color:var(--ink);display:flex;justify-content:center;align-items:center;padding:20px;
+  background:radial-gradient(1200px 600px at 80% -10%,rgba(46,111,242,.15),transparent 60%),
+             radial-gradient(900px 500px at -10% 20%,rgba(37,211,102,.1),transparent 60%),var(--bg);
+  color:var(--ink);display:flex;justify-content:center;align-items:flex-start;
+  padding:20px;min-height:100vh;box-sizing:border-box;
 }
 .shell{
-  width:min(1124px,96%);background:linear-gradient(180deg,#fff,#fafbff);
-  border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,0,0,.08);
-  overflow:hidden;border:1px solid #e9eef6;
+  width:min(1124px,96%);
+  max-height:100vh;overflow-y:auto;
+  background:linear-gradient(180deg,#fff,#fafbff);
+  border-radius:var(--radius);
+  box-shadow:0 8px 32px rgba(0,0,0,.08);
+  border:1px solid #e9eef6;
+  display:flex;flex-direction:column;justify-content:flex-start;
 }
-.hero{padding:16px;border-bottom:1px solid #eef1f6;}
-.hero img{width:100%;border-radius:14px;display:block}
+.hero{
+  padding:12px;
+  border-bottom:1px solid #eef1f6;
+  flex-shrink:0;
+}
+.hero img{
+  width:100%;height:auto;
+  max-height:210px;
+  object-fit:contain;
+  border-radius:14px;
+}
 
 .inner{padding:18px;display:grid;gap:16px;}
-.product-card{border:1px solid #e9eef6;border-radius:14px;padding:16px;background:#fff;}
+.product-card{
+  border:1px solid #e9eef6;border-radius:14px;padding:16px;background:#fff;
+}
 .product-card h3{font-size:20px;margin:0 0 6px;}
 .product-card p{font-size:17px;margin:4px 0;}
 .price{color:#e25342;font-weight:700}
 
-/* 🔹 2 sütun özellik kutusu (simgeli) */
 .specs-grid{
-  background:#fff;border:1px solid #e9eef6;border-radius:12px;
-  padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  background:#fff;
+  border:1px solid #e9eef6;
+  border-radius:14px;
+  padding:10px;
 }
 .spec-item{
   display:flex;align-items:center;gap:8px;
-  background:#f8fafc;border:1px solid #e5e9f2;border-radius:8px;
-  padding:6px 8px;font-size:14.5px;font-weight:500;
+  background:#f9fafc;
+  border-radius:8px;
+  padding:6px 8px;
+  font-size:14px;
 }
-.spec-item i{font-size:18px;width:20px;text-align:center;}
-.spec-label{font-weight:600;color:#0f1a2a;}
-/* Uzun değerleri kırp + tooltip için title */
+.spec-item i{font-size:18px;}
+.spec-label{font-weight:600;}
 .spec-value{
   display:-webkit-box;
-  -webkit-line-clamp:1;               /* masaüstünde 1 satır */
+  -webkit-line-clamp:1;
   -webkit-box-orient:vertical;
-  overflow:hidden;text-overflow:ellipsis;
-  max-width:46ch;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:42ch;
 }
 
-/* Personeller */
 .people{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .personel{
-  display:grid;grid-template-columns:74px 1fr;align-items:center;gap:12px;
-  border:1px solid #e9eef6;border-radius:12px;padding:14px;background:#fff;
+  display:grid;grid-template-columns:74px 1fr;align-items:center;
+  gap:12px;border:1px solid #e9eef6;border-radius:12px;padding:14px;background:#fff;
 }
 .brand-square{width:74px;height:74px;border:1px solid #e9eef6;border-radius:10px;
-  display:grid;place-items:center;overflow:hidden;padding:8px;background:#fff}
-.brand-square img{width:100%;height:100%;object-fit:contain}
-.info{text-align:center}
-.personel h2{font-size:18px;margin:0;font-weight:700}
-.phone-number{font-size:16px;color:#39455a;margin:6px 0 10px}
+  display:grid;place-items:center;overflow:hidden;padding:8px;}
+.brand-square img{width:100%;height:100%;object-fit:contain;}
+.info{text-align:center;}
+.personel h2{font-size:18px;margin:0;font-weight:700;}
+.phone-number{font-size:16px;color:#39455a;margin:6px 0 10px;}
 .whatsapp-button{
   background:var(--accent);color:#fff;font-size:14.5px;padding:7px 12px;border-radius:9px;
   display:inline-flex;align-items:center;gap:8px;text-decoration:none;
   box-shadow:0 2px 6px rgba(37,211,102,.25);
 }
-.whatsapp-button img{width:18px;height:18px}
+.whatsapp-button img{width:18px;height:18px;}
 
-/* Marka kaydırıcı */
 .brands{border-top:1px solid #eef1f6;background:#fbfcff;padding:10px;}
 .brand-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:8px;}
 .brand-row h4{font-size:13px;margin:0;font-weight:700;}
@@ -86,43 +104,50 @@ body{
   padding:10px 14px;font-size:13px;color:#5b677a;
 }
 
-/* Mobil */
-html,body{max-width:100%;overflow-x:hidden}
-img{max-width:100%;height:auto}
-@media(max-width:992px){
-  .shell{width:100%;max-width:100vw;border-radius:0}
-  .hero{padding:12px 12px 0}.inner{padding:12px}
-  .people{grid-template-columns:1fr}.personel{grid-template-columns:56px 1fr}
-  .brand-square{width:56px;height:56px;padding:6px}
-  .personel h2{font-size:16px}.phone-number{font-size:14px}
-  .whatsapp-button{padding:6px 10px;font-size:13px}
-  .logo-slider img{height:18px}.product-card h3{font-size:18px}
-  .spec-value{-webkit-line-clamp:2;max-width:32ch}  /* mobilde 2 satır izin */
+/* --- Mobil optimize --- */
+@media(max-width:768px){
+  .inner{padding:12px;gap:12px;}
+  .product-card{padding:12px;}
+  .product-card h3{font-size:18px;}
+  .product-card p{font-size:15px;}
+  .people{grid-template-columns:1fr;}
+  .personel{grid-template-columns:68px 1fr;padding:10px;}
+  .brand-square{width:68px;height:68px;}
+  .specs-grid{gap:8px;}
+  .spec-item{font-size:13.5px;padding:5px 6px;}
+  .spec-value{-webkit-line-clamp:2;max-width:32ch;}
+}
+
+/* --- Kısa ekranlar --- */
+@media (max-height:780px){
+  .product-card p{font-size:15px;}
+  .spec-item{font-size:13.5px;padding:5px;}
+  .people{gap:10px;}
 }
 </style>
 </head>
 <body>
 <div class="shell">
   <div class="hero">
-    <img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dostyenilogo.jpg" alt="Dost İletişim">
+    <img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dostyenilogo.jpg" alt="">
   </div>
 
   <div class="inner">
     <div class="product-card">
-      <h3 id="product_name">Ürün :</h3>
-      <p id="product_features" class="price">Ram Ve Hafıza :</p>
-      <p class="price" id="product_price">Fiyat:</p>
+      <h3 id="product_name">Ürün : <?= product_name ?></h3>
+      <p id="product_features" class="price">Ram Ve Hafıza : <?= product_features ?></p>
+      <p class="price" id="product_price">Fiyat: $<?= product_price ?></p>
     </div>
 
-    <!-- 🔹 Özellikler (2 sütun, simgeli, kısaltmalı) -->
-    <div id="specs_grid" class="specs-grid" hidden></div>
+    <div class="specs-grid" id="specs_grid"></div>
 
     <div class="people">
       <div class="personel">
         <div class="brand-square"><img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dost.jpg" alt="Dost İletişim"></div>
         <div class="info">
-          <h2>Miskin Adak</h2><p class="phone-number">0535 641 9868</p>
-          <a id="whatsappButton1" href="#" class="whatsapp-button" target="_blank" rel="noopener">
+          <h2>Miskin Adak</h2>
+          <p class="phone-number">0535 641 9868</p>
+          <a id="whatsappButton1" href="#" class="whatsapp-button" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">WhatsApp ile Sipariş Ver
           </a>
         </div>
@@ -130,8 +155,9 @@ img{max-width:100%;height:auto}
       <div class="personel">
         <div class="brand-square"><img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dost.jpg" alt="Dost İletişim"></div>
         <div class="info">
-          <h2>Murat Uğur</h2><p class="phone-number">0536 997 3191</p>
-          <a id="whatsappButton2" href="#" class="whatsapp-button" target="_blank" rel="noopener">
+          <h2>Murat Uğur</h2>
+          <p class="phone-number">0536 997 3191</p>
+          <a id="whatsappButton2" href="#" class="whatsapp-button" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">WhatsApp ile Sipariş Ver
           </a>
         </div>
@@ -154,136 +180,79 @@ img{max-width:100%;height:auto}
     </div></div>
   </div>
 
-  <div class="foot"><span>Güvenli ve hızlı sipariş</span><span>Fiyatlar kura göre değişecektir.</span></div>
+  <div class="foot">
+    <span>Güvenli ve hızlı sipariş</span>
+    <span>Fiyatlar kura göre değişebilir</span>
+  </div>
 </div>
 
 <script>
-/* ---------- Yardımcılar ---------- */
-function qp(n){ return new URL(location.href).searchParams.get(n) || ""; }
-function formatTL(v){ if(!v) return ""; let n=parseFloat(String(v).replace(",", ".")); return isNaN(n)? v+" TL" : n.toLocaleString("tr-TR",{maximumFractionDigits:0})+" TL"; }
-function formatUSD(v){ if(!v) return ""; let n=parseFloat(String(v).replace(",", ".")); return isNaN(n)? v+" $" : n.toLocaleString("en-US",{maximumFractionDigits:2})+" $"; }
-
-/* Uzun metin kısaltma + Boyutlar için inç kısmını at */
-function ellipsize(s, max){ s=String(s||"").trim(); return s.length>max ? s.slice(0,max-1)+"…" : s; }
-function shortenDimensions(val){
-  if(!val) return val;
-  return String(val).replace(/\s*\([^)]*\)\s*$/, "").replace(/\s+/g, " ").trim();
-}
-
-/* ---------- Specs ayıklama: key: value ... değerleri bir sonraki keye kadar al ---------- */
-const SPEC_KEYS_TR = ["İşlemci","Ekran","Kamera","Performans","Gpu","Batarya","Boyutlar","Sensörler","Sensorler"];
-const SPEC_RE = new RegExp("(" + SPEC_KEYS_TR.join("|") + ")\\s*:\\s*([^]+?)(?=(?:,\\s*(?:" + SPEC_KEYS_TR.join("|") + ")\\s*:)|$)", "gi");
-
-function normalizeKey(s){
-  return (s||"").toLocaleLowerCase("tr")
-    .replaceAll("ı","i").replaceAll("İ","i")
-    .replaceAll("ş","s").replaceAll("ç","c")
-    .replaceAll("ğ","g").replaceAll("ö","o").replaceAll("ü","u")
-    .replace(/[^\p{L}]/gu,"").trim();
-}
+function qp(n){return new URL(location.href).searchParams.get(n)||"";}
+function formatTL(v){if(!v)return"";let n=parseFloat(String(v).replace(",","."));
+  return isNaN(n)?v+" TL":n.toLocaleString("tr-TR",{maximumFractionDigits:0})+" TL";}
+function formatUSD(v){if(!v)return"";let n=parseFloat(String(v).replace(",","."));
+  return isNaN(n)?v+" $":n.toLocaleString("en-US",{maximumFractionDigits:2})+" $";}
+function normalizeKey(s){return(s||"").toLocaleLowerCase("tr")
+  .replaceAll("ı","i").replaceAll("ş","s").replaceAll("ç","c").replaceAll("ğ","g")
+  .replaceAll("ö","o").replaceAll("ü","u").replace(/[^\p{L}]/gu,"").trim();}
 function parseSpecs(raw){
-  const out={}; if(!raw) return out;
-  let m;
-  while((m = SPEC_RE.exec(raw)) !== null){
-    const kRaw = m[1] || "";
-    let v = (m[2] || "").trim();
-    // sondaki fazladan virgül/boşlukları temizle
-    v = v.replace(/^[,\s]+|[,\s]+$/g,"").replace(/\s+/g," ");
-    let k = normalizeKey(kRaw);
-    // eş anlamlı normalizasyon
-    if (k.includes("islemci") || k.includes("soc") || k.includes("processor")) k="islemci";
-    else if (k.includes("ekran") || k.includes("display")) k="ekran";
-    else if (k.includes("kamera") || k.includes("camera")) k="kamera";
-    else if (k==="gpu" || k.includes("grafik")) k="gpu";
-    else if (k.includes("batarya") || k.includes("pil") || k.includes("battery")) k="batarya";
-    else if (k.includes("boyut")) k="boyutlar";
-    else if (k.includes("sensor")) k="sensorler";
-    out[k]=v;
-  }
-  return out;
+  const out={};if(!raw)return out;
+  const re=/([^,:]+?)\s*:\s*([^,]+)(?=,|$)/g;let m;
+  while((m=re.exec(raw))!==null){
+    const k=normalizeKey(m[1]);const v=(m[2]||"").trim();let key=k;
+    if(k.includes("islemci")||k.includes("soc")||k.includes("processor"))key="islemci";
+    else if(k.includes("ekran"))key="ekran";
+    else if(k.includes("kamera"))key="kamera";
+    else if(k==="gpu"||k.includes("grafik"))key="gpu";
+    else if(k.includes("batarya")||k.includes("pil"))key="batarya";
+    else if(k.includes("boyut"))key="boyutlar";
+    if(v)out[key]=out[key]?out[key]+", "+v:v;
+  }return out;
 }
-
-/* ---------- 2 sütun simgeli render + kırpma + tooltip ---------- */
+function shortenDimensions(val){if(!val)return val;return String(val).replace(/\s*\([^)]*\)\s*$/,"").trim();}
+function ellipsize(s,max){s=String(s||"").trim();return s.length>max?s.slice(0,max-1)+"…":s;}
 function renderSpecsGrid(specs){
-  const order = [
-    {key:"islemci", icon:"🧠", label:"İşlemci"},
-    {key:"ekran",   icon:"📱", label:"Ekran"},
-    {key:"kamera",  icon:"📸", label:"Kamera"},
-    {key:"gpu",     icon:"🎮", label:"GPU"},
-    {key:"batarya", icon:"🔋", label:"Batarya"},
-    {key:"boyutlar",icon:"📏", label:"Boyutlar"}
-  ];
-  const grid = document.getElementById("specs_grid");
-  grid.innerHTML = "";
-  let found = 0;
-
+  const order=[
+    {key:"islemci",icon:"🧠",label:"İşlemci"},
+    {key:"ekran",icon:"📱",label:"Ekran"},
+    {key:"kamera",icon:"📸",label:"Kamera"},
+    {key:"gpu",icon:"🎮",label:"GPU"},
+    {key:"batarya",icon:"🔋",label:"Batarya"},
+    {key:"boyutlar",icon:"📏",label:"Boyutlar"}];
+  const grid=document.getElementById("specs_grid");grid.innerHTML="";let found=0;
   order.forEach(f=>{
-    let val = specs[f.key];
-    if(!val) return;
-
-    // Özel kısaltmalar
-    let clean = String(val).replace(/\s+/g," ").trim();
-    if (f.key === "boyutlar") clean = shortenDimensions(clean);
-
-    // Alan bazlı hafif kısaltma (tooltip'te tam görünür)
-    let display = clean;
-    if (f.key === "ekran")     display = ellipsize(display, 48);
-    if (f.key === "islemci")   display = ellipsize(display, 48);
-    if (f.key === "kamera")    display = ellipsize(display, 48);
-    if (f.key === "gpu")       display = ellipsize(display, 42);
-    if (f.key === "batarya")   display = ellipsize(display, 36);
-    if (f.key === "boyutlar")  display = ellipsize(display, 40);
-
-    grid.insertAdjacentHTML("beforeend", `
+    const val=specs[f.key];if(!val)return;
+    let clean=String(val).replace(/\s+/g," ").trim();
+    let display=clean;
+    if(f.key==="boyutlar")display=shortenDimensions(display);
+    if(f.key==="islemci"||f.key==="ekran"||f.key==="kamera")display=ellipsize(display,40);
+    if(f.key==="gpu"||f.key==="batarya")display=ellipsize(display,35);
+    grid.insertAdjacentHTML("beforeend",`
       <div class="spec-item" title="${clean}">
         <i>${f.icon}</i>
-        <span>
-          <span class="spec-label">${f.label}:</span>
-          <span class="spec-value">${display}</span>
-        </span>
-      </div>
-    `);
+        <span><span class="spec-label">${f.label}:</span> <span class="spec-value">${display}</span></span>
+      </div>`);
     found++;
   });
-
-  grid.hidden = !found;
+  grid.hidden=!found;
 }
-
-/* ---------- Sayfayı doldur ---------- */
 function hydrate(){
-  const product   = qp("product");
-  const features  = qp("features");
-  const price_usd = qp("price_usd");
-  const price_tl  = qp("price_tl");
-  const specsRaw  = qp("specs");
-
-  // Sayfada görünen fiyat
-  const displayPrice = [formatUSD(price_usd), formatTL(price_tl)].filter(Boolean).join(" / ");
-  document.getElementById("product_name").textContent     = "Ürün : " + (product||"");
-  document.getElementById("product_features").textContent = "Ram Ve Hafıza : " + (features||"");
-  document.getElementById("product_price").textContent    = "Fiyat: " + displayPrice;
-
-  // Özellikler
-  const specsObj = parseSpecs(specsRaw);
-  renderSpecsGrid(specsObj);
-
-  // WhatsApp mesajında da FORMATLI fiyat kullan
-  const usdMsg = price_usd ? formatUSD(price_usd) : "";
-  const tlMsg  = price_tl  ? formatTL(price_tl)  : "";
-
-  const msgLines = [
-    "Sipariş vermek istiyorum.",
-    product  ? `Ürün: ${product}` : null,
-    features ? `Ram Ve Hafıza: ${features}` : null,
-    usdMsg   ? `Fiyat (USD): ${usdMsg}` : null,
-    tlMsg    ? `Fiyat (TL): ${tlMsg}`   : null
-  ].filter(Boolean);
-
-  const enc = encodeURIComponent(msgLines.join("\n"));
-  document.getElementById("whatsappButton1").href = "https://wa.me/905356419868?text="+enc;
-  document.getElementById("whatsappButton2").href = "https://wa.me/905369973191?text="+enc;
+  const p=qp("product"),f=qp("features"),usd=qp("price_usd"),tl=qp("price_tl"),specsRaw=qp("specs");
+  const disp=[formatUSD(usd),formatTL(tl)].filter(Boolean).join(" / ");
+  document.getElementById("product_name").textContent="Ürün : "+(p||"");
+  document.getElementById("product_features").textContent="Ram Ve Hafıza : "+(f||"");
+  document.getElementById("product_price").textContent="Fiyat: "+disp;
+  renderSpecsGrid(parseSpecs(specsRaw));
+  const msg=`Sipariş vermek istiyorum.
+Ürün: ${p||""}
+Ram Ve Hafıza: ${f||""}
+Fiyat (USD): ${formatUSD(usd)}
+Fiyat (TL): ${formatTL(tl)}`;
+  const enc=encodeURIComponent(msg);
+  document.getElementById("whatsappButton1").href="https://wa.me/905356419868?text="+enc;
+  document.getElementById("whatsappButton2").href="https://wa.me/905369973191?text="+enc;
 }
-document.addEventListener("DOMContentLoaded", hydrate);
+document.addEventListener("DOMContentLoaded",hydrate);
 </script>
 </body>
 </html>
