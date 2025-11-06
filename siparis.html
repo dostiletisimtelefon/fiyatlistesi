@@ -7,51 +7,71 @@
 <style>
 :root{
   --bg:#0f1320;--card:#fff;--ink:#0f1a2a;--muted:#5b677a;
-  --brand:#2E6FF2;--accent:#25D366;--radius:16px;
+  --accent:#25D366;--radius:16px;
 }
 body{
   margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;
-  background:radial-gradient(1200px 600px at 80% -10%,rgba(46,111,242,.15),transparent 60%),
-             radial-gradient(900px 500px at -10% 20%,rgba(37,211,102,.1),transparent 60%),var(--bg);
-  color:var(--ink);display:flex;justify-content:center;align-items:center;
-  padding:20px;
+  background:
+    radial-gradient(1200px 600px at 80% -10%,rgba(46,111,242,.15),transparent 60%),
+    radial-gradient(900px 500px at -10% 20%,rgba(37,211,102,.1),transparent 60%),
+    var(--bg);
+  color:var(--ink);display:flex;justify-content:center;align-items:center;padding:20px;
 }
 .shell{
-  width:min(1124px,96%);
-  background:linear-gradient(180deg,#fff,#fafbff);
+  width:min(1124px,96%);background:linear-gradient(180deg,#fff,#fafbff);
   border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,0,0,.08);
   overflow:hidden;border:1px solid #e9eef6;
 }
 .hero{padding:16px;border-bottom:1px solid #eef1f6;}
-.hero img{width:100%;border-radius:14px;}
+.hero img{width:100%;border-radius:14px;display:block}
 
 .inner{padding:18px;display:grid;gap:16px;}
-.product-card{
-  border:1px solid #e9eef6;border-radius:14px;padding:16px;background:#fff;
-}
+.product-card{border:1px solid #e9eef6;border-radius:14px;padding:16px;background:#fff;}
 .product-card h3{font-size:20px;margin:0 0 6px;}
 .product-card p{font-size:17px;margin:4px 0;}
 .price{color:#e25342;font-weight:700}
 
+/* 🔹 2 sütun özellik kutusu (simgeli) */
+.specs-grid{
+  background:#fff;border:1px solid #e9eef6;border-radius:12px;
+  padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+.spec-item{
+  display:flex;align-items:center;gap:8px;
+  background:#f8fafc;border:1px solid #e5e9f2;border-radius:8px;
+  padding:6px 8px;font-size:14.5px;font-weight:500;
+}
+.spec-item i{font-size:18px;width:20px;text-align:center;}
+.spec-label{font-weight:600;color:#0f1a2a;}
+/* Uzun değerleri kırp + tooltip için title */
+.spec-value{
+  display:-webkit-box;
+  -webkit-line-clamp:1;               /* masaüstünde 1 satır */
+  -webkit-box-orient:vertical;
+  overflow:hidden;text-overflow:ellipsis;
+  max-width:46ch;
+}
+
+/* Personeller */
 .people{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .personel{
-  display:grid;grid-template-columns:74px 1fr;align-items:center;
-  gap:12px;border:1px solid #e9eef6;border-radius:12px;padding:14px;background:#fff;
+  display:grid;grid-template-columns:74px 1fr;align-items:center;gap:12px;
+  border:1px solid #e9eef6;border-radius:12px;padding:14px;background:#fff;
 }
 .brand-square{width:74px;height:74px;border:1px solid #e9eef6;border-radius:10px;
-  display:grid;place-items:center;overflow:hidden;padding:8px;}
-.brand-square img{width:100%;height:100%;object-fit:contain;}
-
-.info{text-align:center;}
-.personel h2{font-size:18px;margin:0;font-weight:700;}
-.phone-number{font-size:16px;color:#39455a;margin:6px 0 10px;}
+  display:grid;place-items:center;overflow:hidden;padding:8px;background:#fff}
+.brand-square img{width:100%;height:100%;object-fit:contain}
+.info{text-align:center}
+.personel h2{font-size:18px;margin:0;font-weight:700}
+.phone-number{font-size:16px;color:#39455a;margin:6px 0 10px}
 .whatsapp-button{
   background:var(--accent);color:#fff;font-size:14.5px;padding:7px 12px;border-radius:9px;
   display:inline-flex;align-items:center;gap:8px;text-decoration:none;
   box-shadow:0 2px 6px rgba(37,211,102,.25);
 }
-.whatsapp-button img{width:18px;height:18px;}
+.whatsapp-button img{width:18px;height:18px}
 
+/* Marka kaydırıcı */
 .brands{border-top:1px solid #eef1f6;background:#fbfcff;padding:10px;}
 .brand-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:8px;}
 .brand-row h4{font-size:13px;margin:0;font-weight:700;}
@@ -66,41 +86,42 @@ body{
   padding:10px 14px;font-size:13px;color:#5b677a;
 }
 
-/* Mobil uyum */
-html, body { max-width:100%; overflow-x:hidden; }
-img { max-width:100%; height:auto; }
-
-@media (max-width: 992px){
-  .shell{ width:100%; max-width:100vw; border-radius:0; }
-  .hero{ padding:12px 12px 0; }
-  .inner{ padding:12px; }
-  .people{ grid-template-columns:1fr; }
-  .personel{ grid-template-columns:56px 1fr; }
-  .brand-square{ width:56px; height:56px; padding:6px; }
-  .personel h2{ font-size:16px; }
-  .phone-number{ font-size:14px; }
-  .whatsapp-button{ padding:6px 10px; font-size:13px; }
-  .logo-slider img{ height:18px; }
-  .product-card h3{ font-size:18px; }
+/* Mobil */
+html,body{max-width:100%;overflow-x:hidden}
+img{max-width:100%;height:auto}
+@media(max-width:992px){
+  .shell{width:100%;max-width:100vw;border-radius:0}
+  .hero{padding:12px 12px 0}.inner{padding:12px}
+  .people{grid-template-columns:1fr}.personel{grid-template-columns:56px 1fr}
+  .brand-square{width:56px;height:56px;padding:6px}
+  .personel h2{font-size:16px}.phone-number{font-size:14px}
+  .whatsapp-button{padding:6px 10px;font-size:13px}
+  .logo-slider img{height:18px}.product-card h3{font-size:18px}
+  .spec-value{-webkit-line-clamp:2;max-width:32ch}  /* mobilde 2 satır izin */
 }
 </style>
 </head>
 <body>
 <div class="shell">
-  <div class="hero"><img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dostyenilogo.jpg" alt="Dost İletişim"></div>
+  <div class="hero">
+    <img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dostyenilogo.jpg" alt="Dost İletişim">
+  </div>
+
   <div class="inner">
     <div class="product-card">
-      <h3 id="product_name">Ürün : </h3>
-      <p id="product_features" class="price">Ram Ve Hafıza : </p>
-      <p class="price" id="product_price">Fiyat: </p>
+      <h3 id="product_name">Ürün :</h3>
+      <p id="product_features" class="price">Ram Ve Hafıza :</p>
+      <p class="price" id="product_price">Fiyat:</p>
     </div>
+
+    <!-- 🔹 Özellikler (2 sütun, simgeli, kısaltmalı) -->
+    <div id="specs_grid" class="specs-grid" hidden></div>
 
     <div class="people">
       <div class="personel">
         <div class="brand-square"><img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dost.jpg" alt="Dost İletişim"></div>
         <div class="info">
-          <h2>Miskin Adak</h2>
-          <p class="phone-number">0535 641 9868</p>
+          <h2>Miskin Adak</h2><p class="phone-number">0535 641 9868</p>
           <a id="whatsappButton1" href="#" class="whatsapp-button" target="_blank" rel="noopener">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">WhatsApp ile Sipariş Ver
           </a>
@@ -109,8 +130,7 @@ img { max-width:100%; height:auto; }
       <div class="personel">
         <div class="brand-square"><img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dost.jpg" alt="Dost İletişim"></div>
         <div class="info">
-          <h2>Murat Uğur</h2>
-          <p class="phone-number">0536 997 3191</p>
+          <h2>Murat Uğur</h2><p class="phone-number">0536 997 3191</p>
           <a id="whatsappButton2" href="#" class="whatsapp-button" target="_blank" rel="noopener">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">WhatsApp ile Sipariş Ver
           </a>
@@ -134,54 +154,130 @@ img { max-width:100%; height:auto; }
     </div></div>
   </div>
 
-  <div class="foot">
-    <span>Güvenli ve hızlı sipariş</span>
-    <span>Fiyatlar kura göre değişecektir.</span>
-  </div>
+  <div class="foot"><span>Güvenli ve hızlı sipariş</span><span>Fiyatlar kura göre değişecektir.</span></div>
 </div>
 
 <script>
-function qp(name){ return new URL(location.href).searchParams.get(name) || ""; }
+/* ---------- Yardımcılar ---------- */
+function qp(n){ return new URL(location.href).searchParams.get(n) || ""; }
+function formatTL(v){ if(!v) return ""; let n=parseFloat(String(v).replace(",", ".")); return isNaN(n)? v+" TL" : n.toLocaleString("tr-TR",{maximumFractionDigits:0})+" TL"; }
+function formatUSD(v){ if(!v) return ""; let n=parseFloat(String(v).replace(",", ".")); return isNaN(n)? v+" $" : n.toLocaleString("en-US",{maximumFractionDigits:2})+" $"; }
 
-function hydrateFromQuery(){
-  const product  = qp("product");
-  const features = qp("features");
-  const price_usd = qp("price_usd") || "";
-  const price_tl  = qp("price_tl") || "";
-
-  function formatTL(value){
-  if(!value) return "";
-  // Virgül veya nokta fark etmez, sayıya çevir
-  let num = parseFloat(String(value).replace(",", "."));
-  if(isNaN(num)) return value + " TL";
-  return num.toLocaleString("tr-TR", {minimumFractionDigits: 0, maximumFractionDigits: 0}) + " TL";
+/* Uzun metin kısaltma + Boyutlar için inç kısmını at */
+function ellipsize(s, max){ s=String(s||"").trim(); return s.length>max ? s.slice(0,max-1)+"…" : s; }
+function shortenDimensions(val){
+  if(!val) return val;
+  return String(val).replace(/\s*\([^)]*\)\s*$/, "").replace(/\s+/g, " ").trim();
 }
 
-function formatUSD(value){
-  if(!value) return "";
-  let num = parseFloat(String(value).replace(",", "."));
-  if(isNaN(num)) return value + " $";
-  return num.toLocaleString("en-US", {minimumFractionDigits: 0, maximumFractionDigits: 2}) + " $";
+/* ---------- Specs ayıklama: key: value ... değerleri bir sonraki keye kadar al ---------- */
+const SPEC_KEYS_TR = ["İşlemci","Ekran","Kamera","Performans","Gpu","Batarya","Boyutlar","Sensörler","Sensorler"];
+const SPEC_RE = new RegExp("(" + SPEC_KEYS_TR.join("|") + ")\\s*:\\s*([^]+?)(?=(?:,\\s*(?:" + SPEC_KEYS_TR.join("|") + ")\\s*:)|$)", "gi");
+
+function normalizeKey(s){
+  return (s||"").toLocaleLowerCase("tr")
+    .replaceAll("ı","i").replaceAll("İ","i")
+    .replaceAll("ş","s").replaceAll("ç","c")
+    .replaceAll("ğ","g").replaceAll("ö","o").replaceAll("ü","u")
+    .replace(/[^\p{L}]/gu,"").trim();
+}
+function parseSpecs(raw){
+  const out={}; if(!raw) return out;
+  let m;
+  while((m = SPEC_RE.exec(raw)) !== null){
+    const kRaw = m[1] || "";
+    let v = (m[2] || "").trim();
+    // sondaki fazladan virgül/boşlukları temizle
+    v = v.replace(/^[,\s]+|[,\s]+$/g,"").replace(/\s+/g," ");
+    let k = normalizeKey(kRaw);
+    // eş anlamlı normalizasyon
+    if (k.includes("islemci") || k.includes("soc") || k.includes("processor")) k="islemci";
+    else if (k.includes("ekran") || k.includes("display")) k="ekran";
+    else if (k.includes("kamera") || k.includes("camera")) k="kamera";
+    else if (k==="gpu" || k.includes("grafik")) k="gpu";
+    else if (k.includes("batarya") || k.includes("pil") || k.includes("battery")) k="batarya";
+    else if (k.includes("boyut")) k="boyutlar";
+    else if (k.includes("sensor")) k="sensorler";
+    out[k]=v;
+  }
+  return out;
 }
 
-const priceText =
-  (price_usd ? formatUSD(price_usd) : "") +
-  (price_usd && price_tl ? " / " : "") +
-  (price_tl ? formatTL(price_tl) : "");
+/* ---------- 2 sütun simgeli render + kırpma + tooltip ---------- */
+function renderSpecsGrid(specs){
+  const order = [
+    {key:"islemci", icon:"🧠", label:"İşlemci"},
+    {key:"ekran",   icon:"📱", label:"Ekran"},
+    {key:"kamera",  icon:"📸", label:"Kamera"},
+    {key:"gpu",     icon:"🎮", label:"GPU"},
+    {key:"batarya", icon:"🔋", label:"Batarya"},
+    {key:"boyutlar",icon:"📏", label:"Boyutlar"}
+  ];
+  const grid = document.getElementById("specs_grid");
+  grid.innerHTML = "";
+  let found = 0;
 
-  document.getElementById("product_name").textContent     = "Ürün : " + (product || "—");
-  document.getElementById("product_features").textContent = "Ram Ve Hafıza : " + (features || "—");
-  document.getElementById("product_price").textContent    = "Fiyat: " + (priceText || "—");
+  order.forEach(f=>{
+    let val = specs[f.key];
+    if(!val) return;
 
-  const msg = `Sipariş vermek istiyorum.\nÜrün: ${product}\nRam Ve Hafıza: ${features}\nFiyat (USD): ${price_usd} $\nFiyat (TL): ${price_tl} TL`;
+    // Özel kısaltmalar
+    let clean = String(val).replace(/\s+/g," ").trim();
+    if (f.key === "boyutlar") clean = shortenDimensions(clean);
 
-  const w1 = "https://wa.me/905356419868?text=" + encodeURIComponent(msg);
-  const w2 = "https://wa.me/905369973191?text=" + encodeURIComponent(msg);
-  document.getElementById("whatsappButton1").href = w1;
-  document.getElementById("whatsappButton2").href = w2;
+    // Alan bazlı hafif kısaltma (tooltip'te tam görünür)
+    let display = clean;
+    if (f.key === "ekran")     display = ellipsize(display, 48);
+    if (f.key === "islemci")   display = ellipsize(display, 48);
+    if (f.key === "kamera")    display = ellipsize(display, 48);
+    if (f.key === "gpu")       display = ellipsize(display, 42);
+    if (f.key === "batarya")   display = ellipsize(display, 36);
+    if (f.key === "boyutlar")  display = ellipsize(display, 40);
+
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="spec-item" title="${clean}">
+        <i>${f.icon}</i>
+        <span>
+          <span class="spec-label">${f.label}:</span>
+          <span class="spec-value">${display}</span>
+        </span>
+      </div>
+    `);
+    found++;
+  });
+
+  grid.hidden = !found;
 }
-document.addEventListener("DOMContentLoaded", hydrateFromQuery);
+
+/* ---------- Sayfayı doldur ---------- */
+function hydrate(){
+  const product   = qp("product");
+  const features  = qp("features");
+  const price_usd = qp("price_usd");
+  const price_tl  = qp("price_tl");
+  const specsRaw  = qp("specs");
+
+  document.getElementById("product_name").textContent     = "Ürün : " + (product||"");
+  document.getElementById("product_features").textContent = "Ram Ve Hafıza : " + (features||"");
+  document.getElementById("product_price").textContent    = "Fiyat: " +
+      [formatUSD(price_usd), formatTL(price_tl)].filter(Boolean).join(" / ");
+
+  // Özellikleri çiz
+  const specsObj = parseSpecs(specsRaw);
+  renderSpecsGrid(specsObj);
+
+  // WhatsApp metni (ham değerle, formatlı değil)
+  const msg = `Sipariş vermek istiyorum.
+Ürün: ${product||""}
+Ram Ve Hafıza: ${features||""}
+Fiyat (USD): ${price_usd||""} $
+Fiyat (TL): ${price_tl||""} TL`;
+  const enc = encodeURIComponent(msg);
+  document.getElementById("whatsappButton1").href = "https://wa.me/905356419868?text="+enc;
+  document.getElementById("whatsappButton2").href = "https://wa.me/905369973191?text="+enc;
+}
+
+document.addEventListener("DOMContentLoaded", hydrate);
 </script>
 </body>
 </html>
-
