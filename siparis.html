@@ -257,26 +257,32 @@ function hydrate(){
   const price_tl  = qp("price_tl");
   const specsRaw  = qp("specs");
 
+  // Sayfada görünen fiyat
+  const displayPrice = [formatUSD(price_usd), formatTL(price_tl)].filter(Boolean).join(" / ");
   document.getElementById("product_name").textContent     = "Ürün : " + (product||"");
   document.getElementById("product_features").textContent = "Ram Ve Hafıza : " + (features||"");
-  document.getElementById("product_price").textContent    = "Fiyat: " +
-      [formatUSD(price_usd), formatTL(price_tl)].filter(Boolean).join(" / ");
+  document.getElementById("product_price").textContent    = "Fiyat: " + displayPrice;
 
-  // Özellikleri çiz
+  // Özellikler
   const specsObj = parseSpecs(specsRaw);
   renderSpecsGrid(specsObj);
 
-  // WhatsApp metni (ham değerle, formatlı değil)
-  const msg = `Sipariş vermek istiyorum.
-Ürün: ${product||""}
-Ram Ve Hafıza: ${features||""}
-Fiyat (USD): ${price_usd||""} $
-Fiyat (TL): ${price_tl||""} TL`;
-  const enc = encodeURIComponent(msg);
+  // WhatsApp mesajında da FORMATLI fiyat kullan
+  const usdMsg = price_usd ? formatUSD(price_usd) : "";
+  const tlMsg  = price_tl  ? formatTL(price_tl)  : "";
+
+  const msgLines = [
+    "Sipariş vermek istiyorum.",
+    product  ? `Ürün: ${product}` : null,
+    features ? `Ram Ve Hafıza: ${features}` : null,
+    usdMsg   ? `Fiyat (USD): ${usdMsg}` : null,
+    tlMsg    ? `Fiyat (TL): ${tlMsg}`   : null
+  ].filter(Boolean);
+
+  const enc = encodeURIComponent(msgLines.join("\n"));
   document.getElementById("whatsappButton1").href = "https://wa.me/905356419868?text="+enc;
   document.getElementById("whatsappButton2").href = "https://wa.me/905369973191?text="+enc;
 }
-
 document.addEventListener("DOMContentLoaded", hydrate);
 </script>
 </body>
