@@ -7,10 +7,9 @@
 <style>
 :root{
   --bg:#0f1320;--card:#fff;--ink:#0f1a2a;--muted:#5b677a;
-  --brand:#2E6FF2;--accent:#25D366;--radius:16px;
-  --vh: 1vh; /* JS gerçek görünür yüksekliği yazacak */
+  --accent:#25D366;--radius:16px;
 }
-html, body { height:auto; max-width:100%; overflow-x:hidden; }
+html,body{height:auto;max-width:100%;overflow-x:hidden;}
 body{
   margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;
   background:
@@ -19,8 +18,9 @@ body{
     var(--bg);
   color:var(--ink);
   display:flex;justify-content:center;align-items:flex-start;
-  padding:20px;box-sizing:border-box;
-  min-height:100svh; /* adres çubuğu açıkken gerçek alan */
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  box-sizing:border-box;
+  min-height:100svh; /* yedek */
   min-height:100dvh;
 }
 .shell{
@@ -29,16 +29,14 @@ body{
   border-radius:var(--radius);
   box-shadow:0 8px 32px rgba(0,0,0,.08);
   border:1px solid #e9eef6;
-  display:flex;flex-direction:column;justify-content:flex-start;
-  max-height:calc(var(--vh, 1vh) * 100);
-  overflow-y:auto;
+  display:flex;flex-direction:column;
+  /* kritik: yüksekliği JS verecek; yine de modern yedekleri koy */
+  height:100svh;
+  height:100dvh;
+  overflow:auto;
 }
-.hero{
-  padding:12px;border-bottom:1px solid #eef1f6;flex-shrink:0;
-}
-.hero img{
-  width:100%;height:auto;max-height:210px;object-fit:contain;border-radius:14px;display:block;
-}
+.hero{padding:12px;border-bottom:1px solid #eef1f6;flex-shrink:0;}
+.hero img{width:100%;height:auto;max-height:210px;object-fit:contain;border-radius:14px;display:block;}
 
 .inner{padding:18px;display:grid;gap:16px;}
 .product-card{border:1px solid #e9eef6;border-radius:14px;padding:16px;background:#fff;}
@@ -50,16 +48,11 @@ body{
   display:grid;grid-template-columns:1fr 1fr;gap:10px;
   background:#fff;border:1px solid #e9eef6;border-radius:14px;padding:10px;
 }
-.spec-item{
-  display:flex;align-items:center;gap:8px;
-  background:#f9fafc;border-radius:8px;padding:6px 8px;font-size:14px;
-}
+.spec-item{display:flex;align-items:center;gap:8px;background:#f9fafc;border-radius:8px;padding:6px 8px;font-size:14px;}
 .spec-item i{font-size:18px;}
 .spec-label{font-weight:600;}
-/* Uzun değerleri kırp + tooltip */
 .spec-value{
-  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;
-  overflow:hidden;text-overflow:ellipsis;max-width:42ch;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;max-width:42ch;
 }
 
 .people{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
@@ -67,8 +60,7 @@ body{
   display:grid;grid-template-columns:74px 1fr;align-items:center;gap:12px;
   border:1px solid #e9eef6;border-radius:12px;padding:14px;background:#fff;
 }
-.brand-square{width:74px;height:74px;border:1px solid #e9eef6;border-radius:10px;
-  display:grid;place-items:center;overflow:hidden;padding:8px;background:#fff}
+.brand-square{width:74px;height:74px;border:1px solid #e9eef6;border-radius:10px;display:grid;place-items:center;overflow:hidden;padding:8px;background:#fff}
 .brand-square img{width:100%;height:100%;object-fit:contain}
 .info{text-align:center}
 .personel h2{font-size:18px;margin:0;font-weight:700}
@@ -89,12 +81,12 @@ body{
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .foot{
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
   border-top:1px solid #eef1f6;background:#ffffffd8;backdrop-filter:blur(5px);
-  padding:10px 14px;font-size:13px;color:#5b677a;
+  padding:10px 14px;font-size:13px;color:#5b677a;flex-shrink:0;
 }
 
-/* Mobil */
+/* Mobil sıkılaştırma */
 @media(max-width:768px){
   .inner{padding:12px;gap:12px;}
   .product-card{padding:12px;}
@@ -107,23 +99,10 @@ body{
   .spec-item{font-size:13.5px;padding:5px 6px;}
   .spec-value{-webkit-line-clamp:2;max-width:32ch;}
 }
-
-/* Kısa ekranlar */
-@media (max-height:780px){
-  .product-card p{font-size:15px;}
-  .spec-item{font-size:13.5px;padding:5px;}
-  .people{gap:10px;}
-}
-
-/* iOS Safari için ekstra güvence */
-@supports (-webkit-touch-callout: none){
-  html, body{ min-height:-webkit-fill-available; }
-  .shell{ max-height:-webkit-fill-available; }
-}
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="shell" id="shell">
   <div class="hero">
     <img src="https://raw.githubusercontent.com/dostiletisimtelefon/fiyatlistesi/refs/heads/main/dostyenilogo.jpg" alt="Dost İletişim">
   </div>
@@ -183,14 +162,27 @@ body{
 </div>
 
 <script>
-/* ----- Viewport fix (mobil adres çubuğu) ----- */
-function fixVH(){
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+/* -------- Yükseklik: gerçek görünür alanı kullan -------- */
+function applyRealHeight(){
+  const el = document.getElementById('shell');
+  if (!el) return;
+  let h;
+  if (window.visualViewport && typeof window.visualViewport.height === 'number'){
+    h = Math.floor(window.visualViewport.height);  // adres çubuğu / klavye hariç gerçek yükseklik
+  } else {
+    h = window.innerHeight;                        // yedek
+  }
+  el.style.height = h + 'px';
 }
-window.addEventListener('resize', fixVH);
+['resize','orientationchange','scroll'].forEach(evt=>{
+  window.addEventListener(evt, applyRealHeight, {passive:true});
+});
+if (window.visualViewport){
+  window.visualViewport.addEventListener('resize', applyRealHeight, {passive:true});
+  window.visualViewport.addEventListener('scroll', applyRealHeight, {passive:true});
+}
 
-/* ----- Yardımcılar ----- */
+/* -------- Yardımcılar -------- */
 function qp(n){return new URL(location.href).searchParams.get(n)||"";}
 function isSoldOut(v){return String(v||"").toLowerCase().includes("tükendi");}
 
@@ -207,7 +199,7 @@ function formatUSD(v){
   if(!v) return "";
   let n = parseFloat(String(v).replace(",", "."));
   if (isNaN(n)) return String(v);
-  return n.toLocaleString("tr-TR", { // TR biçim: 1.234,56 $
+  return n.toLocaleString("tr-TR", {
     minimumFractionDigits: 0,
     maximumFractionDigits: (n % 1 === 0 ? 0 : 2)
   }) + " $";
@@ -220,7 +212,6 @@ function normalizeKey(s){
     .replaceAll("ğ","g").replaceAll("ö","o").replaceAll("ü","u")
     .replace(/[^\p{L}]/gu,"").trim();
 }
-/* Başlık: Değer çiftlerini yakala (bir sonraki başlığa kadar) */
 const SPEC_KEYS_TR=["İşlemci","Ekran","Kamera","Performans","Gpu","Batarya","Boyutlar","Sensörler","Sensorler","CPU","GPU","Display","Camera","Battery","Dimensions"];
 const SPEC_RE=new RegExp("("+SPEC_KEYS_TR.join("|")+")\\s*:\\s*([^]+?)(?=(?:,\\s*(?:"+SPEC_KEYS_TR.join("|")+")\\s*:)|$)","gi");
 
@@ -242,7 +233,7 @@ function parseSpecs(raw){
 }
 function shortenDimensions(val){
   if(!val) return val;
-  return String(val).replace(/\s*\([^)]*\)\s*$/,"").trim(); /* inç parantezini çıkar */
+  return String(val).replace(/\s*\([^)]*\)\s*$/,"").trim();
 }
 function ellipsize(s,max){s=String(s||"").trim();return s.length>max?s.slice(0,max-1)+"…":s;}
 
@@ -312,8 +303,10 @@ function hydrate(){
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-  fixVH();
-  hydrate();
+  applyRealHeight();   // gerçek yükseklik
+  hydrate();           // içeriği doldur
+  // bazı Android cihazlarda ilk yüklemede 1 frame geç kalıyor; küçük gecikmeli tekrar
+  setTimeout(applyRealHeight, 60);
 });
 </script>
 </body>
