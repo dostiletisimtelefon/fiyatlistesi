@@ -141,42 +141,30 @@ img { max-width:100%; height:auto; }
 </div>
 
 <script>
-// URL parametrelerini oku
 function qp(name){ return new URL(location.href).searchParams.get(name) || ""; }
 
 function hydrateFromQuery(){
   const product  = qp("product");
   const features = qp("features");
-  // Yeni iki parametre:
-  const price_usd = qp("price_usd") || qp("price"); // geri uyumluluk: price → USD kabul
-  const price_tl  = qp("price_tl");
+  const price_usd = qp("price_usd") || "";
+  const price_tl  = qp("price_tl") || "";
 
-  // Ekrandaki alanlar
-  const priceLine =
-    (price_usd ? (`$${price_usd}`.replace(/^\$\$/,'$')) + " " : "") +   // $ işareti başa gelmişse iki kez olmasın
-    (price_tl ? ` / ${price_tl} TL` : "");
+  const priceText =
+    (price_usd ? price_usd + " $" : "") +
+    (price_usd && price_tl ? " / " : "") +
+    (price_tl ? price_tl + " TL" : "");
 
   document.getElementById("product_name").textContent     = "Ürün : " + (product || "—");
   document.getElementById("product_features").textContent = "Ram Ve Hafıza : " + (features || "—");
-  document.getElementById("product_price").textContent    = "Fiyat: " + (priceLine || "—");
+  document.getElementById("product_price").textContent    = "Fiyat: " + (priceText || "—");
 
-  // WhatsApp mesajı (USD'nin sonuna $, TL'nin sonuna TL)
-  const parts = [
-    `Sipariş vermek istiyorum.`,
-    `Ürün: ${product || "-"}`,
-    `Ram Ve Hafıza: ${features || "-"}`,
-    (price_usd ? `Fiyat (USD): ${price_usd} $` : null),
-    (price_tl  ? `Fiyat (TL): ${price_tl} TL`   : null),
-  ].filter(Boolean);
+  const msg = `Sipariş vermek istiyorum.\nÜrün: ${product}\nRam Ve Hafıza: ${features}\nFiyat (USD): ${price_usd} $\nFiyat (TL): ${price_tl} TL`;
 
-  const msg = parts.join("\n");
-
-  const w1  = "https://wa.me/905356419868?text=" + encodeURIComponent(msg);
-  const w2  = "https://wa.me/905369973191?text=" + encodeURIComponent(msg);
+  const w1 = "https://wa.me/905356419868?text=" + encodeURIComponent(msg);
+  const w2 = "https://wa.me/905369973191?text=" + encodeURIComponent(msg);
   document.getElementById("whatsappButton1").href = w1;
   document.getElementById("whatsappButton2").href = w2;
 }
-
 document.addEventListener("DOMContentLoaded", hydrateFromQuery);
 </script>
 </body>
