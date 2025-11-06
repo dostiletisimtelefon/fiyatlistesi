@@ -188,8 +188,16 @@ body{
 
 <script>
 function qp(n){return new URL(location.href).searchParams.get(n)||"";}
-function formatTL(v){if(!v)return"";let n=parseFloat(String(v).replace(",","."));
-  return isNaN(n)?v+" TL":n.toLocaleString("tr-TR",{maximumFractionDigits:0})+" TL";}
+function formatTL(v){
+  if(!v) return "";
+  let n = parseFloat(String(v).replace(",", "."));
+  if (isNaN(n)) return v; // tükendi vb. olduğu durumlar
+  return n.toLocaleString("tr-TR", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: (n % 1 === 0 ? 0 : 3) // 14.174 → 14,174
+  }) + " TL";
+}
+
 function formatUSD(v){if(!v)return"";let n=parseFloat(String(v).replace(",","."));
   return isNaN(n)?v+" $":n.toLocaleString("en-US",{maximumFractionDigits:2})+" $";}
 function normalizeKey(s){return(s||"").toLocaleLowerCase("tr")
@@ -256,3 +264,4 @@ document.addEventListener("DOMContentLoaded",hydrate);
 </script>
 </body>
 </html>
+
