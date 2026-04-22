@@ -69,17 +69,17 @@ body{
   background:#fff;
   border:1px solid #e9eef6;
   border-radius:12px;
-  padding:12px;
+  padding:10px;
 }
 
 .product-card h3{
-  margin:0 0 6px;
-  font-size:18px;
+  margin:0 0 4px;
+  font-size:16px;
 }
 
 .product-card p{
-  margin:4px 0;
-  font-size:15px;
+  margin:3px 0;
+  font-size:14px;
 }
 
 .price{
@@ -119,7 +119,7 @@ body{
 
 .spec-item.wide{
   grid-column:1 / -1;
-  min-height:68px;
+  min-height:60px;
 }
 
 .spec-item i{
@@ -161,7 +161,7 @@ body{
 }
 
 .spec-item.wide .spec-value{
-  -webkit-line-clamp:3;
+  -webkit-line-clamp:2;
 }
 
 .people{
@@ -287,26 +287,91 @@ body{
 }
 
 @media (max-width:560px){
-  .specs-grid{
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-  }
-
-  .spec-item{
-    min-height:62px;
+  .hero{
     padding:8px;
   }
 
+  .hero img{
+    max-height:125px;
+  }
+
+  .inner{
+    padding:10px 12px;
+    gap:10px;
+  }
+
+  .product-card{
+    padding:10px;
+  }
+
+  .product-card h3{
+    font-size:15px;
+  }
+
+  .product-card p{
+    font-size:13.5px;
+  }
+
+  .specs-grid{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:8px;
+  }
+
+  .spec-item{
+    min-height:58px;
+    padding:7px 8px;
+  }
+
   .spec-item.wide{
-    min-height:74px;
+    min-height:60px;
   }
 
   .spec-label{
-    font-size:12px;
+    font-size:11.5px;
   }
 
   .spec-value{
+    font-size:12px;
+    -webkit-line-clamp:2;
+  }
+
+  .spec-item.wide .spec-value{
+    -webkit-line-clamp:2;
+  }
+
+  .people{
+    gap:10px;
+  }
+
+  .personel{
+    grid-template-columns:54px 1fr;
+    padding:8px;
+    gap:8px;
+  }
+
+  .brand-square{
+    width:54px;
+    height:54px;
+  }
+
+  .personel h2{
+    font-size:14px;
+  }
+
+  .phone-number{
     font-size:12.5px;
+    margin:3px 0 6px;
+  }
+
+  .whatsapp-button{
+    padding:5px 8px;
+    font-size:12px;
+  }
+
+  .foot{
+    font-size:11px;
+    padding:6px 10px;
   }
 }
 
@@ -348,7 +413,7 @@ body{
 }
 
 .shell.compact .spec-item.wide{
-  min-height:70px;
+  min-height:60px;
 }
 
 .shell.compact .spec-item i{
@@ -365,7 +430,7 @@ body{
 }
 
 .shell.compact .spec-item.wide .spec-value{
-  -webkit-line-clamp:3;
+  -webkit-line-clamp:2;
 }
 
 .shell.compact .personel{
@@ -590,7 +655,7 @@ function renderSpecsGrid(specs){
   const order = [
     {key:"islemci",   icon:"🧠", label:"İşlemci", wide:true},
     {key:"ekran",     icon:"📱", label:"Ekran", wide:true},
-    {key:"kamera",    icon:"📸", label:"Kamera", wide:true},
+    {key:"kamera",    icon:"📸", label:"Kamera", wide:false},
     {key:"gpu",       icon:"🎮", label:"GPU", wide:false},
     {key:"batarya",   icon:"🔋", label:"Batarya", wide:false},
     {key:"boyutlar",  icon:"📏", label:"Boyutlar", wide:false}
@@ -610,9 +675,9 @@ function renderSpecsGrid(specs){
 
     let display = clean;
 
-    if(f.key === "islemci")  display = ellipsize(display, 95);
-    if(f.key === "ekran")    display = ellipsize(display, 110);
-    if(f.key === "kamera")   display = ellipsize(display, 110);
+    if(f.key === "islemci")  display = ellipsize(display, 70);
+    if(f.key === "ekran")    display = ellipsize(display, 85);
+    if(f.key === "kamera")   display = ellipsize(display, 70);
     if(f.key === "gpu")      display = ellipsize(display, 42);
     if(f.key === "batarya")  display = ellipsize(display, 42);
     if(f.key === "boyutlar") display = ellipsize(display, 48);
