@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dost İletişim | Mobil Fiyat Listesi</title>
+  <style>
+    :root{
+      --bg:#eef4ff;
+      --ink:#101828;
+      --blue:#2563eb;
+      --orange:#ff8a00;
+      --line:#d6e0f2;
+      --shadow:0 14px 34px rgba(16,24,40,.14);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:linear-gradient(180deg,#dfeaff,#f7faff);
+      color:var(--ink);
+    }
+
+    .page{
+      width:100%;
+      max-width:520px;
+      margin:0 auto;
+      min-height:100vh;
+      background:var(--bg);
+    }
+
+    .hero{
+      padding:12px 10px 9px;
+      background:linear-gradient(135deg,#101828 0%,#1d4ed8 58%,#ff8a00 100%);
+      color:#fff;
+      border-bottom:3px solid rgba(255,255,255,.9);
+      box-shadow:var(--shadow);
+    }
+
+    .brand-row{display:flex;align-items:center;gap:10px}
+
+    .logo{
+      width:44px;height:44px;border-radius:14px;background:#fff;color:#ff4a1c;
+      display:grid;place-items:center;font-weight:900;font-size:22px;
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+    }
+
+    .brand-title{font-size:22px;font-weight:900;letter-spacing:.3px;line-height:22px}
+    .brand-sub{font-size:10px;font-weight:800;opacity:.9;margin-top:3px}
+
+    .date-pill{
+      margin-left:auto;background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.28);border-radius:999px;
+      padding:6px 8px;text-align:center;font-size:9px;font-weight:900;
+      line-height:11px;min-width:92px;
+    }
+
+    .stats{display:grid;grid-template-columns:1.2fr .8fr .9fr;gap:7px;margin-top:10px}
+    .stat{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);border-radius:13px;padding:7px 6px;min-height:48px}
+    .stat-label{font-size:9px;font-weight:900;opacity:.9;text-transform:uppercase}
+    .stat-value{font-size:17px;font-weight:900;margin-top:3px;line-height:18px}
+    .stat-small{font-size:10px;line-height:12px;font-weight:900;margin-top:4px}
+
+    .quick-actions{
+      display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;
+      padding:9px 8px;background:#fff;border-bottom:1px solid var(--line);
+    }
+
+    .qbtn{
+      height:35px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:4px;
+      text-align:center;text-decoration:none;color:#fff;font-size:10px;line-height:11px;
+      font-weight:900;padding:0 6px;box-shadow:0 6px 14px rgba(16,24,40,.12);
+    }
+    .ico{font-size:14px;line-height:1}
+    .qbtn.wa{background:#18a64a}.qbtn.group{background:#2563eb}.qbtn.ref{background:#101828}
+    .qbtn.orange{background:#f97316}.qbtn.telegram{background:#0ea5e9}.qbtn.new{background:#7c3aed}
+
+    .notice{
+      margin:8px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;
+      border-radius:13px;padding:7px 8px;text-align:center;font-size:11px;font-weight:900;
+    }
+
+    .tools{
+      position:sticky;top:0;z-index:25;background:rgba(238,244,255,.94);
+      backdrop-filter:blur(10px);padding:7px 8px;border-bottom:1px solid var(--line);
+    }
+
+    .searchbox{
+      width:100%;height:36px;border:1px solid #b8c7e4;border-radius:13px;
+      padding:0 12px;font-size:13px;font-weight:800;outline:none;background:#fff;
+    }
+
+    .series{
+      margin:0 8px 7px;border-radius:16px;overflow:hidden;background:#fff;
+      border:1px solid var(--line);box-shadow:0 8px 20px rgba(16,24,40,.08);
+    }
+
+    .series-head{
+      height:42px;background:linear-gradient(90deg,#ff8a00,#ffb000);
+      display:flex;align-items:center;justify-content:center;gap:9px;
+      font-weight:900;font-size:20px;
+    }
+
+    .mi-logo{
+      width:27px;height:27px;border-radius:8px;background:#ff6900;color:#fff;
+      display:grid;place-items:center;font-size:13px;font-weight:900;
+      border:2px solid rgba(255,255,255,.7);
+    }
+
+    .series-name{
+      height:25px;line-height:25px;text-align:center;background:#fff3d7;
+      border-top:1px solid #ffd48a;font-size:12px;font-weight:900;color:#7a3d00;
+    }
+
+    .table-card{
+      margin:0 8px;background:#fff;border-radius:16px;
+      border:1px solid var(--line);box-shadow:0 10px 24px rgba(16,24,40,.08);
+      overflow:visible;
+    }
+
+    table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff}
+
+    thead th{
+      background:#2563eb;color:#fff;font-size:9px;line-height:10px;
+      padding:5px 2px;border-right:1px solid rgba(255,255,255,.22);
+      height:32px;position:sticky;top:51px;z-index:30;
+      box-shadow:0 2px 0 rgba(0,0,0,.12);
+    }
+
+    tbody td{
+      border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+      font-size:9px;line-height:10px;text-align:center;font-weight:900;
+      height:39px;padding:2px;overflow:hidden;vertical-align:middle;
+    }
+
+    tbody tr:nth-child(even){background:#f8fbff}
+
+    .c-more{width:10%}
+    .c-order{width:13%}
+    .c-model{width:24%}
+    .c-ram{width:11%}
+    .c-reg{width:20%}
+    .c-usd{width:10%}
+    .c-try{width:12%}
+
+    .more-btn{
+      width:24px;height:24px;border-radius:8px;border:0;background:#101828;color:#fff;
+      font-size:13px;line-height:24px;font-weight:900;cursor:pointer;
+    }
+
+    .order-link,.model-link{color:#155eef;font-weight:900;text-decoration:underline;display:inline-block}
+    .model-link{max-height:22px;overflow:hidden}
+
+    .reg-green{background:#dcfce7;color:#166534}
+    .reg-yellow{background:#fef3c7;color:#92400e}
+    .reg-red{background:#fee2e2;color:#991b1b}
+
+    .cell-stock-out{background:#e5e7eb;color:#111827}
+    .cell-stock-low{background:#fef9c3;color:#854d0e}
+    .cell-price{background:#fff;color:#101828}
+
+    .hint{padding:7px 8px 13px;font-size:10px;font-weight:800;color:#475467;text-align:center}
+
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:100;
+      display:none;align-items:flex-end;justify-content:center;padding:10px;
+    }
+    .modal-backdrop.show{display:flex}
+
+    .modal{
+      width:100%;max-width:500px;background:#fff;border-radius:20px 20px 14px 14px;
+      overflow:hidden;box-shadow:var(--shadow);animation:slideUp .18s ease-out;
+    }
+
+    @keyframes slideUp{from{transform:translateY(40px);opacity:.8}to{transform:translateY(0);opacity:1}}
+
+    .modal-head{
+      background:linear-gradient(135deg,#101828,#2563eb);color:#fff;
+      padding:11px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+    }
+    .modal-title{font-weight:900;font-size:15px;line-height:17px}
+    .close-btn{width:32px;height:32px;border:0;border-radius:10px;background:#fff;color:#101828;font-size:20px;font-weight:900;cursor:pointer}
+    .modal-body{padding:10px;background:#f4f7ff;max-height:72vh;overflow-y:auto}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+    .detail-card{background:#fff;border:1px solid #c9d6ea;border-radius:12px;padding:8px;min-height:50px}
+    .detail-label{font-size:10px;color:#667085;font-weight:900;margin-bottom:3px;text-transform:uppercase}
+    .detail-value{font-size:12px;line-height:14px;font-weight:900;color:#111}
+    .wide{grid-column:span 2}
+    .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.modal-actions.three{grid-template-columns:1fr 1fr 1fr}
+    .action-btn{display:flex;align-items:center;justify-content:center;height:42px;border-radius:12px;text-decoration:none;color:#fff;font-size:13px;font-weight:900}
+    .wa{background:#16a34a}.tg{background:#0ea5e9}.gsm{background:#111827}.copy{background:#2563eb;border:0;cursor:pointer}
+
+    @media(max-width:420px){
+      .brand-title{font-size:20px}.logo{width:40px;height:40px}
+      .quick-actions{gap:5px;padding:8px 6px}.qbtn{font-size:9px}
+      .stats{gap:5px}.stat-value{font-size:15px}
+      thead th{font-size:8px;top:51px}
+      tbody td{font-size:8px}
+      .more-btn{width:23px;height:23px;font-size:12px}
+      .order-link,.model-link{font-size:8px}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="brand-row">
+        <div class="logo">Dİ</div>
+        <div>
+          <div class="brand-title">DOST İLETİŞİM</div>
+          <div class="brand-sub">Güncel mobil fiyat listesi</div>
+        </div>
+        <div class="date-pill">24.04.2026<br>CUMA</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-label">Dolar Kuru</div><div class="stat-value">45,064 ₺</div></div>
+        <div class="stat"><div class="stat-label">Güncelleme</div><div class="stat-small">12:59</div></div>
+        <div class="stat"><div class="stat-label">Liste</div><div class="stat-small">Yeni Modeller</div></div>
+      </div>
+    </header>
+
+    <section class="quick-actions">
+      <a class="qbtn wa" href="#"><span class="ico">🟢</span> WhatsApp Sipariş</a>
+      <a class="qbtn group" href="#"><span class="ico">💬</span> WhatsApp Grup</a>
+      <a class="qbtn telegram" href="#"><span class="ico">✈️</span> Telegram</a>
+      <a class="qbtn ref" href="#"><span class="ico">⭐</span> Referanslar</a>
+      <a class="qbtn orange" href="#"><span class="ico">🛒</span> Ön Sipariş</a>
+      <a class="qbtn new" href="#"><span class="ico">🆕</span> Yeni Modeller</a>
+    </section>
+
+    <div class="notice">Ürün detayları için siyah ok butonuna basınız.</div>
+
+    <div class="tools">
+      <input id="search" class="searchbox" type="search" placeholder="Model ara... örn: Redmi Note 12" />
+    </div>
+
+    <section class="series">
+      <div class="series-head"><span class="mi-logo">mi</span><span>XIAOMI</span></div>
+      <div class="series-name">🔷 XIAOMI REDMİ 12 SERİSİ 🔷</div>
+    </section>
+
+    <main class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th class="c-more">DETAY</th>
+            <th class="c-order">SİPARİŞ</th>
+            <th class="c-model">MODEL</th>
+            <th class="c-ram">RAM</th>
+            <th class="c-reg">SİM KAYIT</th>
+            <th class="c-usd">$</th>
+            <th class="c-try">₺ TL</th>
+          </tr>
+        </thead>
+        <tbody id="productRows"></tbody>
+      </table>
+    </main>
+
+    <div class="hint">$ alanına fiyat, TÜKENDİ veya AZ STOK yazılabilir. TL alanı yanındadır.</div>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">Ürün Detayı</div>
+        <button class="close-btn" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalDetails" class="detail-grid"></div>
+        <div class="modal-actions">
+          <a id="modalWa" class="action-btn wa" href="#">🟢 WhatsApp</a>
+          <a id="modalGsm" class="action-btn gsm" href="#" target="_blank">📱 GSM Arena</a>
+        </div>
+        <div class="modal-actions">
+          <button class="action-btn copy" onclick="copyProduct()">📋 Bilgiyi Kopyala</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      {model:"REDMI NOTE 12S",ram:"6/128",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"TÜKENDİ",tl:"",screen:"6.43 inç AMOLED, 90Hz",cpu:"MediaTek Helio G96",camera:"108MP ana kamera",battery:"5000 mAh",charge:"33W hızlı şarj",color:"Siyah / Mavi",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 12S",ram:"8/256",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"TÜKENDİ",tl:"",screen:"6.43 inç AMOLED, 90Hz",cpu:"MediaTek Helio G96",camera:"108MP ana kamera",battery:"5000 mAh",charge:"33W hızlı şarj",color:"Siyah / Gri",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 12 PRO",ram:"8/256",reg:"DİRENÇ KAYITLI İSTEYENLER +800TL",regClass:"reg-yellow",usd:"190",tl:"8.562",screen:"6.67 inç AMOLED, 120Hz",cpu:"MediaTek Dimensity 1080",camera:"50MP OIS kamera",battery:"5000 mAh",charge:"67W hızlı şarj",color:"Mavi / Siyah",warranty:"Servis kayıtlı",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 12 PRO",ram:"12/256",reg:"DİRENÇ KAYITLI İSTEYENLER +800TL",regClass:"reg-yellow",usd:"200",tl:"9.013",screen:"6.67 inç AMOLED, 120Hz",cpu:"MediaTek Dimensity 1080",camera:"50MP OIS kamera",battery:"5000 mAh",charge:"67W hızlı şarj",color:"Beyaz / Siyah",warranty:"Servis kayıtlı",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 12 PRO PLUS",ram:"12/256",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"245",tl:"11.041",screen:"6.67 inç AMOLED, 120Hz",cpu:"MediaTek Dimensity 1080",camera:"200MP OIS kamera",battery:"5000 mAh",charge:"120W hızlı şarj",color:"Siyah / Mavi",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI 13C",ram:"4/128",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"115",tl:"5.182",screen:"6.74 inç IPS, 90Hz",cpu:"Helio G85",camera:"50MP ana kamera",battery:"5000 mAh",charge:"18W şarj",color:"Siyah / Yeşil",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI 13C",ram:"8/256",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"135",tl:"6.084",screen:"6.74 inç IPS, 90Hz",cpu:"Helio G85",camera:"50MP ana kamera",battery:"5000 mAh",charge:"18W şarj",color:"Mavi / Siyah",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 13",ram:"8/256",reg:"DİRENÇ KAYITLI İSTEYENLER +800TL",regClass:"reg-yellow",usd:"175",tl:"7.886",screen:"6.67 inç AMOLED, 120Hz",cpu:"Snapdragon 685",camera:"108MP ana kamera",battery:"5000 mAh",charge:"33W hızlı şarj",color:"Siyah / Yeşil",warranty:"Servis kayıtlı",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 13 PRO",ram:"8/256",reg:"DİRENÇ KAYITLI İSTEYENLER +800TL",regClass:"reg-yellow",usd:"235",tl:"10.590",screen:"6.67 inç AMOLED, 120Hz",cpu:"Helio G99 Ultra",camera:"200MP OIS kamera",battery:"5000 mAh",charge:"67W hızlı şarj",color:"Mor / Siyah",warranty:"Servis kayıtlı",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"REDMI NOTE 13 PRO PLUS",ram:"12/512",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"315",tl:"14.195",screen:"6.67 inç AMOLED Curved, 120Hz",cpu:"Dimensity 7200 Ultra",camera:"200MP OIS kamera",battery:"5000 mAh",charge:"120W hızlı şarj",color:"Beyaz / Siyah",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"POCO X6 PRO",ram:"12/512",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"330",tl:"14.872",screen:"6.67 inç AMOLED, 120Hz",cpu:"Dimensity 8300 Ultra",camera:"64MP OIS kamera",battery:"5000 mAh",charge:"67W hızlı şarj",color:"Sarı / Siyah",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"POCO F6",ram:"12/512",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"390",tl:"17.575",screen:"6.67 inç AMOLED, 120Hz",cpu:"Snapdragon 8s Gen 3",camera:"50MP OIS kamera",battery:"5000 mAh",charge:"90W hızlı şarj",color:"Siyah / Yeşil",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"XIAOMI 14T",ram:"12/256",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"470",tl:"21.180",screen:"6.67 inç AMOLED, 144Hz",cpu:"Dimensity 8300 Ultra",camera:"Leica kamera sistemi",battery:"5000 mAh",charge:"67W hızlı şarj",color:"Titan / Siyah",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"},
+      {model:"XIAOMI 14T PRO",ram:"12/512",reg:"ÇİFT HAT KAYITLI ✅",regClass:"reg-green",usd:"AZ STOK",tl:"",screen:"6.67 inç AMOLED, 144Hz",cpu:"Dimensity 9300 Plus",camera:"Leica Pro kamera",battery:"5000 mAh",charge:"120W hızlı şarj",color:"Gri / Siyah",warranty:"İthalatçı garantili",gsm:"https://www.gsmarena.com/",telegram:"https://t.me/",wa:"$1"}
+    ];
+
+    const tbody = document.getElementById("productRows");
+    const search = document.getElementById("search");
+    let selectedProduct = null;
+
+    function getPriceClass(value){
+      const v = String(value || "").toLocaleUpperCase("tr-TR").trim();
+      if(v.includes("TÜKENDİ")) return "cell-stock-out";
+      if(v.includes("AZ")) return "cell-stock-low";
+      return "cell-price";
+    }
+
+    function priceText(p){
+      const usd = String(p.usd || "").trim();
+      if(!usd || usd === "-") return "-";
+      if(isNaN(Number(usd))) return usd;
+      return "$" + usd;
+    }
+
+    function tlText(p){
+      const usd = String(p.usd || "").trim();
+      if(isNaN(Number(usd))) return "";
+      return p.tl || "";
+    }
+
+    function renderRows(list){
+      tbody.innerHTML = list.map(p => {
+        const index = products.indexOf(p);
+        return `
+          <tr>
+            <td class="c-more"><button class="more-btn" onclick="openModal(${index})">⌄</button></td>
+            <td class="c-order"><a class="order-link" href="${p.wa}">Sipariş<br>Ver</a></td>
+            <td class="c-model"><a class="model-link" href="#" onclick="openModal(${index});return false;">${p.model}</a></td>
+            <td class="c-ram">${p.ram}</td>
+            <td class="c-reg ${p.regClass}">${p.reg}</td>
+            <td class="c-usd ${getPriceClass(p.usd)}">${priceText(p)}</td>
+            <td class="c-try">${tlText(p)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function openModal(index){
+      const p = products[index];
+      selectedProduct = p;
+      const isUsdNumber = !isNaN(Number(String(p.usd).trim()));
+      const fiyat = isUsdNumber ? `$${p.usd} / ${p.tl} TL` : String(p.usd || "-");
+
+      document.getElementById("modalTitle").textContent = `${p.model} / ${p.ram}`;
+      document.getElementById("modalWa").href = p.wa + `?text=${encodeURIComponent(p.model + " " + p.ram + " için bilgi almak istiyorum.")}`;
+      document.getElementById("modalGsm").href = p.gsm || "https://www.gsmarena.com/";
+      document.getElementById("modalDetails").innerHTML = `
+        <div class="detail-card"><div class="detail-label">Fiyat</div><div class="detail-value">${fiyat}</div></div>
+        <div class="detail-card"><div class="detail-label">RAM / Hafıza</div><div class="detail-value">${p.ram}</div></div>
+        <div class="detail-card"><div class="detail-label">Ekran</div><div class="detail-value">${p.screen}</div></div>
+        <div class="detail-card"><div class="detail-label">İşlemci</div><div class="detail-value">${p.cpu}</div></div>
+        <div class="detail-card"><div class="detail-label">Kamera</div><div class="detail-value">${p.camera}</div></div>
+        <div class="detail-card"><div class="detail-label">Batarya</div><div class="detail-value">${p.battery}</div></div>
+        <div class="detail-card"><div class="detail-label">Şarj</div><div class="detail-value">${p.charge}</div></div>
+        <div class="detail-card"><div class="detail-label">Renk</div><div class="detail-value">${p.color}</div></div>
+        <div class="detail-card"><div class="detail-label">Kayıt</div><div class="detail-value">${p.reg}</div></div>
+        
+        
+      `;
+      document.getElementById("modalBackdrop").classList.add("show");
+    }
+
+    function closeModal(){
+      document.getElementById("modalBackdrop").classList.remove("show");
+    }
+
+    function copyProduct(){
+      if(!selectedProduct) return;
+      const p = selectedProduct;
+      const isUsdNumber = !isNaN(Number(String(p.usd).trim()));
+      const fiyat = isUsdNumber ? `$${p.usd} / ${p.tl} TL` : String(p.usd || "-");
+      const text = `${p.model} ${p.ram}
+Fiyat: ${fiyat}
+Kayıt: ${p.reg}
+Ekran: ${p.screen}
+İşlemci: ${p.cpu}
+Kamera: ${p.camera}
+Batarya: ${p.battery}`;
+      navigator.clipboard.writeText(text).then(()=>alert("Ürün bilgisi kopyalandı."));
+    }
+
+    search.addEventListener("input",()=>{
+      const q = search.value.toLocaleLowerCase("tr-TR").trim();
+      const filtered = products.filter(p =>
+        p.model.toLocaleLowerCase("tr-TR").includes(q) ||
+        p.ram.toLocaleLowerCase("tr-TR").includes(q) ||
+        String(p.usd).toLocaleLowerCase("tr-TR").includes(q) ||
+        String(p.tl).toLocaleLowerCase("tr-TR").includes(q)
+      );
+      renderRows(filtered);
+    });
+
+    document.getElementById("modalBackdrop").addEventListener("click", e => {
+      if(e.target.id === "modalBackdrop") closeModal();
+    });
+
+    renderRows(products);
+  </script>
+</body>
+</html>
